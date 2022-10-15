@@ -1,0 +1,119 @@
+{% load i18n %}
+<div class="scrollable">
+    <a href="{% url 'video:home' %}" id="sidebar-select-home">
+        <i class="bi bi-house-door-fill"></i>
+        {% trans 'Main Page' %}
+    </a>
+    <a href="{% url 'video:history' %}" id="sidebar-select-history">
+        <i class="bi bi-collection-play"></i>
+        {% trans 'Views' %}
+    </a>
+    <a href="{% url 'video:liked' %}" id="sidebar-select-liked">
+        <i class="bi bi-hand-thumbs-up"></i>
+        {% trans 'Favourites' %}
+    </a>
+    <a href="{% url 'video:watch_later' %}" id="sidebar-select-wl">
+        <i class="bi bi-clock"></i>
+        {% trans 'See it later' %}
+    </a>
+
+    <div class="divider"></div>
+
+    {% for category in categories %}
+        {% if forloop.counter <= 3 %}
+        <a href="{% url 'video:home' %}?cat={{ category.id }}&" id="sidebar-select-cat{{ category.id }}">
+            {% autoescape off %}
+                {{ category.icon }}
+            {% endautoescape %}
+            {{ category.title }}
+        </a>
+        {% endif %}
+    {% endfor %}
+    {% if categories.count > 3 %}
+    <a id="sidebar-more">
+        <i class="bi bi-chevron-down"></i>
+        {% trans 'More' %}
+    </a>
+    {% endif %}
+    <div id="sidebar-more-section" style="display: none;">
+
+        {% for category in categories %}
+            {% if forloop.counter > 3 %}
+            <a href= "{% url 'video:home' %}?cat={{ category.id }}&" id="sidebar-select-cat{{ category.id }}">
+                {% autoescape off %}
+                    {{ category.icon }}
+                {% endautoescape %}
+                {{ category.title }}
+            </a>
+            {% endif %}
+        {% endfor %}
+
+        <a id="sidebar-less">
+            <i class="bi bi-chevron-up"></i>
+            {% trans 'Less' %}
+        </a>
+    </div>
+
+    <div class="divider"></div>
+
+    <a href="{% url 'video:about' %}" id="sidebar-select-about">
+        <i class="bi bi-info-square"></i>
+        {% trans 'About us' %}
+    </a>
+    <a href="{% url 'video:policy' %}" id="sidebar-select-policy">
+        <i class="bi bi-list-check"></i>
+        {% trans 'The rules' %}
+    </a>
+    <a href="{% url 'video:contact_us' %}" id="sidebar-select-contact_us">
+        <i class="bi bi-newspaper"></i>
+        {% trans 'Contact us' %}
+    </a>
+</div>
+
+<script>
+    const moreBtn = document.getElementById('sidebar-more');
+    const moreSection = document.getElementById('sidebar-more-section');
+    const lessBtn = document.getElementById('sidebar-less');
+
+    moreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        moreSection.style.display = '';
+        moreBtn.style.display = 'none';
+    });
+    lessBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        moreSection.style.display = 'none';
+        moreBtn.style.display = '';
+    });
+
+    function set_active_page() {
+        let current_url = window.location.href.split('?')[0];
+        let url_params = window.location.search;
+        url_params = new URLSearchParams(url_params);
+        let origin_url = window.location.origin;
+
+        if(current_url === origin_url + '{% url 'video:home' %}'){ // Home and Categories
+            if(url_params.has('cat')){
+                const category = url_params.get('cat');
+                document.getElementById('sidebar-select-cat' + category).classList.add('active');
+            }else{
+                document.getElementById('sidebar-select-home').classList.add('active');
+            }
+        }else if(current_url === origin_url + '{% url 'video:history' %}'){
+            document.getElementById('sidebar-select-history').classList.add('active');
+        }else if(current_url === origin_url + '{% url 'video:liked' %}'){
+            document.getElementById('sidebar-select-liked').classList.add('active');
+        }else if(current_url === origin_url + '{% url 'video:watch_later' %}'){
+            document.getElementById('sidebar-select-wl').classList.add('active');
+        } else if(current_url === origin_url + '{% url 'video:about' %}'){
+            document.getElementById('sidebar-select-about').classList.add('active');
+        }else if(current_url === origin_url + '{% url 'video:policy' %}'){
+            document.getElementById('sidebar-select-policy').classList.add('active');
+        }else if(current_url === origin_url + '{% url 'video:contact_us' %}'){
+            document.getElementById('sidebar-select-contact_us').classList.add('active');
+        }else{
+        }
+    }
+    set_active_page();
+
+</script>

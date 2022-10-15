@@ -1,0 +1,61 @@
+{% load static %}
+{% load i18n %}
+<div class="container-fluid">
+  <ul id="add-videos-list" style="list-style: none;">
+      {% for video in playlist.channel.videos.all %}
+          {% if video not in playlist.videos.all %}
+              <li id="{{ video.code }}" class="container-fluid p-1 my-1" style="background-color: inherit;">
+                  <div class="row w-100 position-relative">
+                      <div class="col-3">
+                          <div class="bg-darkgray position-relative p-0" style="height: fit-content; max-height: 72px; overflow: hidden;">
+                              <img class="card-img-top video-card-img"
+                                   alt="Thumbnail"
+                                      {% if video.thumbnail %}
+                                   src="{{ video.thumbnail.url }}"
+                                      {% else %}
+                                   src="{% static 'video/images/logo.png' %}"
+                                      {% endif %}>
+                          </div>
+                      </div>
+                      <div class="col-9 pt-2">
+                          <h6 class="text-end text-black one-line" style="overflow: hidden"
+                              href="{% url 'video:video-detail' code=video.code %}">
+                              {{ video.title }}
+                          </h6>
+
+                          <p class="text-end text-muted one-line" href="{% url 'video:channel-detail' video.channel.name %}">
+                              {{ video.channel.title }}
+                          </p>
+                      </div>
+                  </div>
+              </li>
+          {% endif %}
+      {% endfor %}
+  </ul>
+</div>
+
+<script>
+    let adding_your_videos = new Array();
+
+    $('#add-videos-list li').hover(function () {
+        $(this).css({
+            "background-color": "#f1f1f1",
+            "cursor": "pointer"
+        });
+    });
+    $('#add-videos-list li').mouseleave(function () {
+        $(this).css({"background-color": "inherit"});
+    });
+
+    $('#add-videos-list li').click(function () {
+        if(document.getElementById(this.id).style.border.includes("solid")){
+            $(this).css({"border": "none"});
+            let position = adding_your_videos.indexOf(this.id);
+            adding_your_videos.splice(position, 1);
+        }
+        else{
+            $(this).css({"border": "solid"});
+            adding_your_videos.push(this.id);
+        }
+    });
+</script>

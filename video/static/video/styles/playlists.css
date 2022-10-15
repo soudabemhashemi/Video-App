@@ -1,0 +1,13 @@
+
+ul {
+  list-style: none;
+}
+
+.my-handle {
+  cursor: move;
+}
+
+.playlist-group-item{
+  padding-top: 20px;
+  border-bottom-width: medium;
+}

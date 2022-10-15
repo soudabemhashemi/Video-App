@@ -1,0 +1,25 @@
+{% extends 'user/base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <form method="post" class="auth-form border px-3 py-4 rounded">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    <div class="text-danger mt-3">
+                        {{ field.errors }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="mb-3">
+                <button type="submit" class="we-btn-primary w-100">{% translate 'Signup' %}</button>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a href="{{ other_signup_option_url }}">{{ other_signup_option_text }}</a>
+                <a href="{% url 'login' %}">{% translate 'Login' %}</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

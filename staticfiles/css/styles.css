@@ -1,0 +1,55 @@
+.we-btn {
+  background-color: #FFFFFF; /* Green */
+  border: none;
+  color: black;
+  padding: 8px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.we-btn-primary {
+  background-color: #CC0000; /* Red */
+  border: none;
+  color: white;
+  padding: 8px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.we-btn-secondary {
+  background-color: #ECECEC; /* White-gray */
+  border: none;
+  color: #606060; /* Gray */
+  padding: 8px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.we-btn-subscribe {
+  background-color: #CC0000; /* Red */
+  color: white;
+  width: 160px;
+}
+
+.we-btn-unsubscribe {
+  background-color: #ECECEC; /* White-gray */
+  color: #606060; /* Gray */
+  width: 160px;
+}
+
+.we-btn-search {
+  background-color: #D0D0D0; /* Gray */
+  border: none;
+  color: #808080;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+}

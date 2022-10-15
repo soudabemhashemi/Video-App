@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load rest_framework %}
+
+<h5 class="text-end my-4">{{video.comments.count}} {% trans "Comments" %}</h5>
+
+{% if user.is_authenticated %}
+    <form id="form" autocomplete="off" class="pe-1 mb-4">
+        <fieldset>
+            <div class="row">
+                <div class="p-0 default-avatar" style="width: 50px; height: 50px;">
+                    <p id="name" class="d-none">{{ user.channel.title }}</p>
+                    {% if user.channel.avatar %}
+                        <img class="rounded-circle m-2" style="object-fit: cover;" src="{{ user.channel.avatar.url }}" width="50" height="50">
+                    {% else %}
+                        <div id="profileImage" class="rounded-circle user-img fs-5" style="padding-top: .73rem; width: 50px; height: 50px;"></div>
+                    {% endif %}
+                </div>
+                <div class="col" style="margin-right: 1rem!important;">
+                    <textarea type="text" rows="1" class="text-end p-2 mt-3 form-input py-0 overflow-hidden" style="background: #f8f9fa;" type='text'
+                           id="comment-context" name="text" placeholder="{% trans "Add a public comment..." %}"
+                           onclick="openButton()"></textarea>
+                    <button id="cancelButton" type='button' class="we-btn float-start m-2 px-4 ms-0 d-none my-1" style="background-color: #f8f9fa;" onclick="cancel()">{% trans 'Cancel' %}</button>
+                    <button id="commentButton" type="submit" class="we-btn float-start m-2 px-4 ms-0 d-none my-1" style="background-color: #f1f1f1" data-url="{% url 'video-api:comments' video.code %}">{% trans 'Submit' %}</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+{% else %}
+    <p class="text-end fs-5 p-2">
+        {% trans 'To submit your comment, please first ' %}
+        <a href="{% url 'login' %}?next={{ request.path }}%23total-comments"> {% trans 'here' %} </a>
+        {% trans 'log in' %}
+    </p>
+{% endif %}
+<div id="comments">
+    {% for comment in video.comments.all|dictsortreversed:"sent_at" %}
+    <div class="mt-2 comment pe-1">
+        <div class="row pb-2">
+            <div class="col-12 col-md-6 d-flex flex-row bd-highlight">
+                <a class="row default-avatar" href="{% url 'video:channel-detail' comment.user.channel.name %}">
+                    {% if comment.user.channel.avatar %}
+                        <img class="rounded-circle user-img px-0" style="width: 50px !important; height: 50px !important; object-fit: cover;" src="{{ comment.user.channel.avatar.url }}" alt="avatar" width="50" height="50">
+                    {% else %}
+                        <div id="profileImage" class="rounded-circle user-img px-0 fs-5" style="padding-top: .73rem; width: 50px; height: 50px;"></div>
+                    {% endif %}
+                    <p class="col m-t-30 text-end" style="margin-right: .1rem!important;" id="name">{{comment.user.channel.title}}</p>
+                </a>
+                <small class="m-t-30 ms-3 fs-10 text-muted">{{comment.string_date}}</small>
+            </div>
+            <pre class="text-end px-1-9 ms-5 w-90 more-less overflow-hidden auto-direction" id="comment" style="margin-top: -21px; white-space: pre-line;"> {{comment.text}}</pre>
+        </div>
+    </div>
+    {% endfor %}
+</div>

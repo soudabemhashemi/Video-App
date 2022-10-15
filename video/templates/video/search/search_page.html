@@ -1,0 +1,23 @@
+
+{% extends "video/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/default-avatar.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div>
+            {% include "video/search/search_filters.html" %}
+        </div>
+
+        <div>
+            {% include "video/search/videos_list_search.html" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+ <script src="{% static 'video/js/defaultAvatar.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load i18n %}
+<div class="container-fluid">
+
+    <div class="input-group">
+        <input type="text" class="form-control" id="url-input"
+               placeholder="{% trans "Paste your URL here" %}"
+               aria-label="URL" aria-describedby="basic-addon1">
+        <div class="input-group-append">
+            <button id="check-video-url" class="btn we-btn-primary" type="button">
+                {% trans 'check' %}
+            </button>
+        </div>
+        <div id="invalid-url-error" class="invalid-feedback">
+        </div>
+    </div>
+
+
+    <div class="container-fluid p-3 d-flex justify-content-center align-items-center">
+        <div >
+            <img id="video-check-thumbnail"
+                 src=""
+                 style="display: none;"
+                 width="320" height="180">
+        </div>
+    </div>
+
+    <div class="container-fluid p-2 d-flex justify-content-center align-items-center">
+        <h6 id="video-check-title"></h6>
+    </div>
+
+</div>
+
+<script>
+    let adding_URL_video = "";
+    $('#check-video-url').click(function () {
+        const URLInput = document.getElementById("url-input");
+        const starts_with_video_page = URLInput.value.startsWith(window.location.origin + '/video/');
+        const is_video_page = !(URLInput.value.split('/')[5])
+        if(starts_with_video_page && is_video_page){
+            let video_code =  URLInput.value.split('/')[4]
+            getVideo(video_code);
+        }
+        else {
+            URLInput.parentElement.querySelector("#invalid-url-error").innerHTML = "{% trans "invalid URL" %}";
+            URLInput.classList.add("is-invalid");
+            URLInput.classList.remove("is-valid");
+        }
+    });
+
+    $('#url-input').on('input', function () {
+        const URLInput = document.getElementById("url-input");
+        URLInput.classList.remove("is-invalid");
+        URLInput.classList.remove("is-valid");
+    });
+
+    async function getVideo(video_code) {
+        await axios.get("{% url "video-api:get-video" %}", {
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+                'Content-Type': 'multipart/form-data'
+            },
+            params: {
+                video_code: video_code,
+            }
+        }).then((response) => {
+            const URLInput = document.getElementById("url-input");
+            URLInput.classList.add("is-valid");
+            URLInput.classList.remove("is-invalid");
+            const video_thumbnail = document.getElementById("video-check-thumbnail");
+            video_thumbnail.style.display = ""
+            video_thumbnail.src = response.data[0].thumbnail;
+            const video_title = document.getElementById("video-check-title");
+            video_title.innerHTML = response.data[0].title;
+            adding_URL_video = URLInput.value.split('/')[4]
+        }, (error) => {
+            const URLInput = document.getElementById("url-input");
+            URLInput.parentElement.querySelector("#invalid-url-error").innerHTML = "{% trans "Video not found" %}";
+            URLInput.classList.add("is-invalid");
+            URLInput.classList.remove("is-valid");
+            console.log(error);
+        });
+    }
+
+</script>

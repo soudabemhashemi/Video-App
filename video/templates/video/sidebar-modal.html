@@ -1,0 +1,39 @@
+<div id="sidebar-backdrop" style="display: none;"></div>
+
+<div class="sidebar modal">
+    <div class="header">
+        <button id="sidebar-toggle" type="button">
+            <i class="bi bi-list"></i>
+        </button>
+        <img src="https://via.placeholder.com/90x20">
+    </div>
+
+    <div class="divider"></div>
+
+    {% include "video/sidebar-content.html" %}
+</div>
+
+<script>
+    const sidebar = document.getElementsByClassName('sidebar')[0];
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+
+    let sidebarOpen = false;
+    function toggleSidebar() {
+        if (sidebarOpen) {
+            sidebar.style.right = '-240px';
+            backdrop.style.opacity = '0';
+            setTimeout(() => {
+                backdrop.style.display = 'none';
+            }, 150);
+        } else {
+            sidebar.style.right = '0';
+            backdrop.style.display = '';
+            setTimeout(() => backdrop.style.opacity = '0.25', 0);
+        }
+        sidebarOpen = !sidebarOpen
+    }
+
+    backdrop.addEventListener('click', toggleSidebar);
+    toggleBtn.addEventListener('click', toggleSidebar);
+</script>

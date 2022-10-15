@@ -1,0 +1,31 @@
+<div class="sidebar small-sidebar sidebar-close-first">
+    {% include "video/sidebar-content.html" %}
+</div>
+
+<script>
+    const sidebar = document.getElementsByClassName('sidebar')[0];
+
+    let sidebarOpen = true;
+    if($(document).width() < 1300 && sidebar)
+        sidebarOpen = false
+    if(sidebar.classList.contains('sidebar-close-first'))
+        sidebarOpen = false;
+
+    function toggleSidebar() {
+        const content = document.getElementById('content');
+        if (sidebarOpen) {
+            sidebar.style.right = '-240px';
+            content.style.marginRight = '0';
+            if($(document).width() < 1300)
+                content.style.opacity = '1';
+        } else {
+            sidebar.classList.remove('sidebar-close-first')
+            content.classList.remove('content-mr-0')
+            sidebar.style.right = '0';
+            content.style.marginRight = '240px';
+            if($(document).width() < 1300)
+                content.style.opacity = '0.25';
+        }
+        sidebarOpen = !sidebarOpen
+    }
+</script>

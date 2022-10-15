@@ -1,0 +1,103 @@
+{% load i18n %}
+
+<div class="container-fluid">
+	<div class="row align-items-center justify-content-center">
+        <div class="col-sm-4 pt-3 pb-3">
+            <div class="form-group">
+                <select id="select_duration" class="form-select bg-light" style="padding-right: 36px;">
+                    <option value=0 selected>{% trans 'Any time period' %}</option>
+                    <option value=1>{% trans 'Less than 5 minutes' %}</option>
+                    <option value=2>{% trans 'Between 5 and 20 minutes' %}</option>
+                    <option value=3>{% trans 'More than 20 minutes' %}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-4 pt-3 pb-3">
+            <div class="form-group">
+                <select id="select_order" class="form-select bg-light" style="padding-right: 36px;">
+                    <option value=0 selected>{% trans 'In any order' %}</option>
+                    <option value=1>{% trans 'The newest' %}</option>
+                    <option value=2>{% trans 'The oldest' %}</option>
+                    <option value=3>{% trans 'Most visited' %}</option>
+                    <option value=4>{% trans 'Lowest views' %}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-2" style="width: fit-content;">
+                <button onclick="getFilteringLink()"
+                        type="button" class="btn we-btn-primary btn-block">
+                    {% trans 'Filter' %}
+                </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getFilteringLink(){
+        let new_url = window.location.href
+        new_url = removeParam('page', new_url)
+        new_url = getDuration(new_url)
+        new_url = getOrder(new_url)
+        window.location.href = new_url
+    }
+
+    function getDuration(new_url) {
+        let duration = document.getElementById("select_duration");
+        duration = duration.options[duration.selectedIndex].value;
+        new_url = removeParam('dur', new_url);
+        if(duration != "") {
+            return new_url + '&' + 'dur=' + duration;
+        }
+        else {
+            return new_url;
+        }
+    }
+
+    function getOrder(new_url) {
+        let order = document.getElementById("select_order");
+        order = order.options[order.selectedIndex].value;
+        new_url = removeParam('order', new_url);
+        if(order != "") {
+            return new_url + '&' + 'order=' + order;
+        }
+        else {
+            return new_url;
+        }
+    }
+
+    function removeParam(key, sourceURL) {
+    let rtn = sourceURL.split("?")[0],
+        param,
+        params_arr = [],
+        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+        params_arr = queryString.split("&");
+        for (let i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+                params_arr.splice(i, 1);
+            }
+        }
+        if (params_arr.length) rtn = rtn + "?" + params_arr.join("&");
+    }
+    else
+        rtn = rtn + "?"
+    return rtn;
+}
+
+    function setFilters() {
+        const urlParams = new URLSearchParams("?" + window.location.href.split("?")[1]);
+        let order = urlParams.get('order')
+        let duration = urlParams.get('dur')
+        if(!urlParams.has('order'))
+            order = '0';
+        if(!urlParams.has('dur'))
+            duration = '0';
+        document.getElementById("select_order").value = order
+        document.getElementById("select_duration").value = duration
+    }
+
+    setFilters();
+</script>

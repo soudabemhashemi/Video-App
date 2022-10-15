@@ -1,0 +1,110 @@
+{% load static %}
+{% load i18n %}
+
+<video
+        id="my-video" class="video-js vjs-big-play-centered temp vjs-16-9 vjs-v7" controls preload="auto"
+        {% if video.thumbnail %} poster="{{video.poster.url}}" {% else %} poster="{% static 'video/images/logo.png' %}"{% endif %}
+        data-setup='{ "playbackRates": [0.75, 1, 1.5, 2], "resolutionSelector" : [240, 360, 720] }'
+        data-videoId = "{{video.id}}"
+        data-video-code = "{{ video.code }}"
+        data-play-url="{% url 'video-api:report-play' %}"
+>
+        <source src={{ video.video_master_file_url }} type="application/x-mpegURL" label="auto" selected="true"/>
+        {% for video_format in video.video_formats.all %}
+            <script>console.log("{{ video_format.quality }}")</script>
+            <source src="{{ video_format.m3u8_url }}" type="application/x-mpegURL" label="{{ video_format.quality }}" selected="false"/>
+        {% endfor %}
+
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+</video>
+<div class="py-4">
+    <h1 class="text-end fs-4">{{video.title}}</h1>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="row">
+                <p class='col-auto fs-6 float-right pl-5'> {{video.total_views}} {% trans 'Seen' %} </p>
+                <p class="col ms-0 p-0 fs-6" style="display: list-item">{{video.string_date}}</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 direction-initial px-4">
+            <div class="my-2">
+                <div class="dropdown d-inline">
+                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h ms-0 fs-6 "></i></button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a id="report_video" name="button" class="dropdown-item text-end" data-form-url="{{ video.code }}/report/" href="{% url 'video:report' code=video.code %}" style="max-height: 30px">
+                            <div class="row">
+                                <p class="col px-0"> {% trans 'Report abuse' %}</p>
+                                <i class="col-auto bi bi-flag"></i>
+                            </div>
+                        </a></li>
+                        <li><a class="dropdown-item text-end" href="#" style="max-height: 30px">
+                            <div class="row">
+                                <p class="col px-0">{% trans 'Download' %}</p>
+                                <i class="col-auto bi bi-download"></i>
+                            </div>
+                        </a></li>
+                    </ul>
+                </div>
+                <button onclick="applyWatchLater(this)" is_added="{{is_added_to_watch_later}}" data-url="{% url 'video-api:watch-later' %}" data-video="{{ video.code }}" user="{{ request.user }}">
+                    <i class="bi bi-alarm fs-6 {% if is_added_to_watch_later %} text-red {% endif %}" style="direction: rtl;" aria-hidden="true"  data-toggle="tooltip" data-placement="bottom" title="{% trans 'Watch later' %}"><small class="px-2 fst-normal">{% trans 'Watch later' %}</small></i>
+                </button>
+                <button data-toggle="tooltip" data-placement="bottom" title="{% trans 'Share' %}">
+                    <i class='bi bi-share-fill fs-6' style="direction: rtl; margin-right: 1rem !important; "><small class="px-2 fst-normal">{% trans 'Share' %}</small></i>
+                </button>
+                <button onclick="applyLikeDislike(this)" data-type="dislike" data-url="{% url 'video-api:like_or_dislike' video.code %}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'I did not like it.' %}">
+                    <i class='bi bi-hand-thumbs-down ms-2 fs-6 {% if is_disliked %} text-red {% endif %}' id="dislike"> {{video.dislikes.count}}</i>
+                </button>
+                <button onclick="applyLikeDislike(this)" data-type="like" data-url="{% url 'video-api:like_or_dislike' video.code %}" data-toggle="tooltip" data-placement="bottom" title="{% trans 'I liked it.' %}">
+                    <i class='bi bi-hand-thumbs-up ms-2 fs-6 {% if is_liked %} text-red {% endif %}' id="like"> {{video.likes.count}}</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <hr  class="mt-0 mb-2">
+
+    <div class="row py-2 px-1">
+        <a class="col-8 col-md-5 d-flex flex-row bd-highlight px-0 default-avatar" href="{% url 'video:channel-detail' video.channel.name %}">
+            {% if video.channel.avatar %}
+                <img class="rounded-circle user-img" style="object-fit: cover;" src="{{ video.channel.avatar.url }}" alt="avatar"/>
+            {% else %}
+                <div id="profileImage" class="rounded-circle user-img fs-4" style="padding-top: 0.9rem;"></div>
+            {% endif %}
+            <div class="my-3 ms-2">
+                <h5 id="name" class="my-2 text-end text-decoration-none text-black">{{video.channel.title}}</h5>
+            </div>
+        </a>
+        <div class="col-4 col-md-7 float-end p-0 d-block direction-initial ps-2">
+            {% if user != video.channel.user %}
+                {% if user.channel in video.channel.subscribers.all %}
+                    <button id="subscribe-this" type="submit" class="we-btn we-btn-subscribe d-none" onclick="subscribe(this, 'unsubscribe-this')" path="{% url 'video-api:subscribe_api' pk=video.channel.id %}"> {% trans 'Follow' %} </button>
+                {% else %}
+                    <button id="subscribe-this" type="submit" class="we-btn we-btn-subscribe d-inline" onclick="subscribe(this, 'unsubscribe-this')" path="{% url 'video-api:subscribe_api' pk=video.channel.id %}"> {% trans 'Follow' %} </button>
+                {% endif %}
+                {% if user.channel in video.channel.subscribers.all %}
+                    <button id="unsubscribe-this" type="submit" class="we-btn we-btn-unsubscribe d-inline" onclick="unsubscribe(this, 'subscribe-this')" path="{% url 'video-api:unsubscribe_api' pk=video.channel.id %}"> {% trans 'Unfollow' %} </button>
+                {% else %}
+                    <button id="unsubscribe-this" type="submit" class="we-btn we-btn-unsubscribe d-none" onclick="unsubscribe(this, 'subscribe-this')" path="{% url 'video-api:unsubscribe_api' pk=video.channel.id %}"> {% trans 'Unfollow' %} </button>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'video:edit_video' video.code %}">
+                    <button type="submit" class="we-btn-primary"> {% trans 'Edit' %}</button>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    <p class="text-end ws-pre-wrap more-less me-5-5" id="description">{{video.description}}</p>
+</div>
+<div class="ms-1 text-end row">
+        <a href="{% url 'video:home' %}?cat={{ video.category.id }}&" class="col-auto ms-2 p-0 text-muted fs-7">
+                {{ video.category.title }}
+        </a>
+    {% for tag in video.tags.all %}
+        <a class="col-auto ms-2 p-0 text-muted fs-7" href="">#{{tag.title}}</a>
+    {% endfor %}
+</div>
+
+<hr>

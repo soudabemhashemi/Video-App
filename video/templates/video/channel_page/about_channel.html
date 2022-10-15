@@ -1,0 +1,21 @@
+{% load i18n %}
+<div class="my-5 text-end">
+    <div class="row gx-5">
+        <div class="col-12 col-sm-7 col-md-8 col-lg-9">
+            <h5>{% trans 'Channel description' %}</h5>
+            <pre class="mt-5 overflow-hidden border-bottom pb-4" style="direction: rtl; white-space: pre-line;">
+                {{ channel.description }}
+            </pre>
+            <h5>{% trans 'Links' %}</h5>
+            <div class="row border-bottom pb-4">
+                {% for link in channel.links.all %}
+                    <a class="col-5 text-primary my-2 fs-6-1" href="{{ link.link }}">{{ link.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3">
+            <h5 class="border-bottom pb-4 mt-2 mt-sm-0">{% trans 'Stats' %}</h5>
+            <p class="border-bottom py-1">{% trans 'Joined' %}: {{ channel.jalil_date }}</p>
+        </div>
+    </div>
+</div>

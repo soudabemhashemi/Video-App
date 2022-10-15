@@ -1,0 +1,45 @@
+#navbar {
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+#navbar .fab {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar .fab:hover {
+    background-color: #ddd;
+}
+
+#navbar .fab i {
+    display: flex;
+    font-size: 1.5rem;
+}
+
+#navbar form {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 500px;
+}
+
+#navbar button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown-toggle::after{
+    display: none;
+}
+
+.dropdown-menu a {
+    text-align: right;
+}

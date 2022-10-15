@@ -1,0 +1,564 @@
+{% extends 'user/base.html' %}
+{% load i18n %}
+{% block content %}
+    <div class="d-flex align-items-center justify-content-center my-3">
+        <form method="post" class="profile-form border px-3 py-4 rounded">
+            {% csrf_token %}
+            <div class="d-flex align-items-space-between justify-content-center">
+                <div class="mb-3 me-2" style="flex: 1">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+                    {{ form.username }}
+                    <div class="text-danger mt-3">
+                        {{ form.username.errors }}
+                    </div>
+                </div>
+                <div class="mb-3 ms-2" style="flex: 1">
+                    <div class="d-flex">
+                        <label for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }}</label>
+                        <div style="flex-grow: 1"></div>
+                        <a class="text-info" href="{% url 'password-reset-begin' %}"><i class="bi bi-pencil-square fs-5"></i></a>
+                    </div>
+                    {{ form.password }}
+                    <div class="text-danger mt-3">
+                        {{ form.password.errors }}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="mb-3" style="flex: 1">
+                    <div class="d-flex">
+                        <label for="{{ form.mobile.id_for_label }}" class="form-label">{{ form.mobile.label }}</label>
+                        <div style="flex-grow: 1"></div>
+                        {% if form.mobile.value %}
+                            <a class="text-info" href="#" data-bs-toggle="modal" data-bs-target="#mobile-add-modal"><i class="bi bi-pencil-square fs-5"></i></a>
+                            {% if form.email.value %}
+                                <a class="text-danger" href="#" data-bs-toggle="modal" data-bs-target="#mobileDeleteModel"><i class="bi bi-trash fs-5"></i></a>
+                            {% endif %}
+                        {% else %}
+                            <a class="text-success" href="#" data-bs-toggle="modal" data-bs-target="#mobile-add-modal"><i class="bi bi-plus-square fs-5"></i></a>
+                        {% endif %}
+                    </div>
+                    {{ form.mobile }}
+                    <div class="text-danger mt-3">
+                        {{ form.mobile.errors }}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="mb-3" style="flex: 1">
+                    <div class="d-flex">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+                        <div style="flex-grow: 1"></div>
+                        {% if form.email.value %}
+                            <a class="text-info" href="#" data-bs-toggle="modal" data-bs-target="#email-add-modal"><i class="bi bi-pencil-square fs-5"></i></a>
+                            {% if form.mobile.value %}
+                                <a class="text-danger" href="#" data-bs-toggle="modal" data-bs-target="#emailDeleteModel"><i class="bi bi-trash fs-5"></i></a>
+                            {% endif %}
+                        {% else %}
+                            <a class="text-success" href="#" data-bs-toggle="modal" data-bs-target="#email-add-modal"><i class="bi bi-plus-square fs-5"></i></a>
+                        {% endif %}
+                    </div>
+                    {{ form.email }}
+                    <div class="text-danger mt-3">
+                        {{ form.email.errors }}
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="mb-3 me-2" style="flex: 1">
+                    <label for="{{ form.first_name.id_for_label }}" class="form-label">{{ form.first_name.label }}</label>
+                    {{ form.first_name }}
+                    <div class="text-danger mt-3">
+                        {{ form.first_name.errors }}
+                    </div>
+                </div>
+                <div class="mb-3 ms-2" style="flex: 1">
+                    <label for="{{ form.last_name.id_for_label }}" class="form-label">{{ form.last_name.label }}</label>
+                    {{ form.last_name }}
+                    <div class="text-danger mt-3">
+                        {{ form.last_name.errors }}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.channel_description.id_for_label }}" class="form-label">{{ form.channel_description.label }}</label>
+                {{ form.channel_description }}
+                <div class="text-danger mt-3">
+                    {{ form.channel_description.errors }}
+                </div>
+            </div>
+
+            <div class="mb-5" style="margin-top: 2.5rem;">
+                <label class="form-label">لینک‌ها</label>
+                {% for form in form.formset %}
+                <div class="row mb-3">
+                    <a class="col text-primary">{{ form.initial.title }}</a>
+                    <div class="col row" style="display: contents">
+                        <a class="text-info col-auto px-0" href="#" data-bs-toggle="modal" data-bs-target="#link-edit-modal" onclick=fillInputs('{{ form.initial.title }}','{{ form.initial.url }}',{{ form.initial.id }})><i class="bi bi-pencil-square fs-5"></i></a>
+                        <a class="text-danger col-1 px-0" href="#" data-bs-toggle="modal" data-bs-target="#linkDeleteModel" onclick=setId({{ form.initial.id }})><i class="bi bi-trash fs-5"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+                <a class="text-primary ms-0" href="#" data-bs-toggle="modal" data-bs-target="#link-add-modal">اضافه کردن لینک جدید</a>
+            </div>
+
+            <div class="text-danger">
+                {{ form.non_field_errors }}
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="text-success" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="mb-3">
+                <button type="submit" class="we-btn-primary w-100">{% translate 'Submit' %}</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Link Modal -->
+    <div class="modal fade" id="linkDeleteModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    آیا از حذف لینک خود مطمئن هستید؟
+                </div>
+                <div class="modal-footer">
+                    <button id="delete-link-button" type="button" class="btn btn-danger" >بله مطمئن هستم!</button>
+                    <button type="button" class="btn enable-color" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Modal -->
+    <div class="modal fade" id="mobileDeleteModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    آیا از حذف شماره موبایل خود مطمئن هستید؟
+                </div>
+                <div class="modal-footer">
+                    <button id="delete-mobile-button" type="button" class="btn btn-danger" >بله مطمئن هستم!</button>
+                    <button type="button" class="btn enable-color" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal fade" id="emailDeleteModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    آیا از حذف ایمیل خود مطمئن هستید؟
+                </div>
+                <div class="modal-footer">
+                    <button id="delete-email-button" type="button" class="btn btn-danger" >بله مطمئن هستم!</button>
+                    <button type="button" class="btn enable-color" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link Edit Modal -->
+    <div class="modal fade" id="link-edit-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="link-title-input" class="form-label">عنوان لینک خود را وارد کنید.</label>
+                        <input type="text" class="form-control" id="link-title-input-edit" placeholder="Telegram">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                    <div class="contact-verification mb-3">
+                        <label for="link-url-input" class="form-label">آدرس لینک خود را وارد کنید.</label>
+                        <input type="url" class="form-control" id="link-url-input-edit" placeholder="https://www.telegram.com">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="edit-link-button btn btn-success" type="button" data-contact-input-id="link-title-input-edit" data-code-input-id="link-url-input-edit" style="display: block">ثبت</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link Change Modal -->
+    <div class="modal fade" id="link-add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="link-title-input" class="form-label">عنوان لینک خود را وارد کنید.</label>
+                        <input type="text" class="form-control" id="link-title-input" placeholder="Telegram">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                    <div class="contact-verification mb-3">
+                        <label for="link-url-input" class="form-label">آدرس لینک خود را وارد کنید.</label>
+                        <input type="url" class="form-control" id="link-url-input" placeholder="https://www.telegram.com">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="send-link-button btn btn-success" type="button" data-contact-input-id="link-title-input" data-code-input-id="link-url-input" style="display: block">ثبت</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Change Modal -->
+    <div class="modal fade" id="mobile-add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="mobile-number-input" class="form-label">موبایل خود را وارد کنید</label>
+                        <input type="tel" class="form-control" id="mobile-number-input" data-contact-type="mobile" placeholder="09123456789">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                    <div class="contact-verification mb-3" style="display: none">
+                        <label for="mobile-verification-code-input" class="form-label">کد تایید ارسال شده را وارد کنید</label>
+                        <input type="tel" class="form-control" id="mobile-verification-code-input" placeholder="12345">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="send-contact-button btn btn-success" type="button" data-input-id="mobile-number-input" data-contact-type="mobile">ارسال کد تایید</button>
+                    <button class="send-code-button btn btn-success" type="button" data-contact-input-id="mobile-number-input" data-code-input-id="mobile-verification-code-input" data-contact-type="mobile" style="display: none">ثبت</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Change Modal -->
+    <div class="modal fade" id="email-add-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="email-address-input" class="form-label">ایمیل خود را وارد کنید</label>
+                        <input type="tel" class="form-control" id="email-address-input" data-contact-type="email" placeholder="info@example.com">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                    <div class="contact-verification mb-3" style="display: none">
+                        <label for="email-verification-code-input" class="form-label">کد تایید ارسال شده را وارد کنید</label>
+                        <input type="tel" class="form-control" id="email-verification-code-input" placeholder="12345">
+                        <div class="success-messages valid-feedback mt-2 "></div>
+                        <div class="error-messages invalid-feedback mt-2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="send-contact-button btn btn-success" type="button" data-input-id="email-address-input" data-contact-type="email">ارسال کد تایید</button>
+                    <button class="send-code-button btn btn-success" type="button" data-contact-input-id="email-address-input" data-code-input-id="email-verification-code-input" data-contact-type="email" style="display: none">ثبت</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بازگشت</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    const axios_instance = axios.create({
+        headers: {
+            'X-CSRFToken': csrftoken
+        },
+        timeout: 5000
+    })
+
+    function deleteContact(url) {
+        axios_instance.delete(
+            url
+        ).then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        }).then(function () {
+            // always executed
+            location.reload()
+        });
+    }
+
+    let delete_mobile_button = document.getElementById("delete-mobile-button")
+    delete_mobile_button.addEventListener("click", (function (event) {
+        const url = "{% url 'profile-contact-mobile' %}"
+        deleteContact(url)
+    }))
+
+    function fillInputs(title, link, id){
+        document.getElementById('link-title-input-edit').value = title;
+        document.getElementById('link-url-input-edit').value = link;
+        setId(id)
+    }
+
+    let link_id = -1;
+    function setId(id){
+        link_id = id;
+    }
+
+    let delete_link_button = document.getElementById("delete-link-button")
+    delete_link_button.addEventListener("click", (function (event) {
+        const url = "{% url 'video-api:links' pk=0 %}".replace('0', link_id);
+        deleteContact(url)
+    }))
+
+    let delete_email_button = document.getElementById("delete-email-button")
+    delete_email_button.addEventListener("click", (function (event) {
+        const url = "{% url 'profile-contact-email' %}"
+        deleteContact(url)
+    }))
+
+    function sendVerificationCode(element) {
+        const inputId = element.getAttribute("data-input-id")
+        const contactType = element.getAttribute("data-contact-type")
+        const input = document.getElementById(inputId)
+        const contact = input.value
+        const url = "/accounts/profile/contact/" + contactType + "/?" + contactType + "=" + contact
+        axios_instance.get(
+            url
+        ).then(function (response) {
+            console.log(response.data);
+            input.disabled = true
+            input.parentElement.parentElement.querySelector(".contact-verification").style.display = "block";
+            element.parentElement.querySelector(".send-code-button").style.display = "block";
+            element.style.display = "none";
+            input.classList.add("is-valid");
+            input.classList.remove("is-invalid");
+        })
+        .catch(function (error) {
+            console.log(error.response.data);
+            input.classList.add("is-invalid")
+            input.classList.remove("is-valid")
+            input.parentElement.querySelector(".error-messages").innerHTML = error.response.data[contactType]
+
+        }).then(function () {
+            // always executed
+        });
+    }
+
+    let sendContactButtons = document.querySelectorAll(".send-contact-button")
+    sendContactButtons.forEach(function (element){
+        element.addEventListener("click", function (event) {
+            sendVerificationCode(event.target)
+        })
+    })
+
+    function submitVerificationCode(element) {
+        const contactInputID = element.getAttribute("data-contact-input-id")
+        const contactInput = document.getElementById(contactInputID)
+
+        const codeInputID = element.getAttribute("data-code-input-id")
+        const codeInput = document.getElementById(codeInputID)
+
+        const contactType = element.getAttribute("data-contact-type")
+        const contact = contactInput.value
+        const code = document.getElementById(codeInputID).value
+        const url = "/accounts/profile/contact/" + contactType + "/"
+        axios_instance.post(
+            url, {[contactType]: contact, "verification_code": code}
+        ).then(function (response) {
+            console.log(response.data);
+            codeInput.parentElement.querySelector(".success-messages").innerHTML = response.data.message
+            codeInput.classList.add("is-valid")
+            codeInput.classList.remove("is-invalid")
+            setTimeout(function () {
+                const modalEl = element.closest(".modal")
+                const modal = bootstrap.Modal.getInstance(modalEl)
+                modal.hide()
+                location.reload()
+            }, 1500)
+        })
+        .catch(function (error) {
+            console.log(error.response.data);
+            codeInput.parentElement.querySelector(".error-messages").innerHTML = error.response.data.message
+            codeInput.classList.add("is-invalid")
+            codeInput.classList.remove("is-valid")
+
+        }).then(function () {
+            // always executed
+        });
+    }
+
+    function submitLink(element) {
+
+        const linkTitle = document.getElementById("link-title-input").value
+        const linkURL = document.getElementById("link-url-input").value
+
+        const codeInputID = element.getAttribute("data-code-input-id")
+        const codeInput = document.getElementById(codeInputID)
+
+        const url = "{% url 'video-api:links' pk=0 %}"
+        axios_instance.post(
+            url, {'title': linkTitle, "link": linkURL}
+        ).then(function (response) {
+            codeInput.parentElement.querySelector(".success-messages").innerHTML = response.data.success
+            codeInput.classList.add("is-valid")
+            setTimeout(function () {
+                const modalEl = element.closest(".modal")
+                const modal = bootstrap.Modal.getInstance(modalEl)
+                modal.hide()
+                location.reload()
+                }, 1500)
+        })
+        .catch(function (error) {
+            if ('link' in error.response.data){
+                codeInput.parentElement.querySelector(".error-messages").innerHTML = error.response.data.link
+                codeInput.classList.add("is-invalid")
+                codeInput.classList.remove("is-valid")
+            }
+            else{
+                const codeInput = document.getElementById('link-title-input')
+                codeInput.parentElement.querySelector(".error-messages").innerHTML = error.response.data.title
+                codeInput.classList.add("is-invalid")
+                codeInput.classList.remove("is-valid")
+            }
+
+
+        }).then(function () {
+            // always executed
+        });
+    }
+
+    function editLink(element) {
+
+        const linkTitle = document.getElementById("link-title-input-edit").value
+        const linkURL = document.getElementById("link-url-input-edit").value
+
+        const codeInputID = element.getAttribute("data-code-input-id")
+        const codeInput = document.getElementById(codeInputID)
+
+        const url = "{% url 'video-api:links' pk=0 %}".replace('0', link_id);
+        axios_instance.put(
+            url, {'title': linkTitle, "link": linkURL}
+        ).then(function (response) {
+            codeInput.parentElement.querySelector(".success-messages").innerHTML = response.data.success
+            codeInput.classList.add("is-valid")
+            setTimeout(function () {
+                const modalEl = element.closest(".modal")
+                const modal = bootstrap.Modal.getInstance(modalEl)
+                modal.hide()
+                location.reload()
+                }, 1500)
+        })
+        .catch(function (error) {
+            if ('link' in error.response.data){
+                codeInput.parentElement.querySelector(".error-messages").innerHTML = error.response.data.link
+                codeInput.classList.add("is-invalid")
+                codeInput.classList.remove("is-valid")
+            }
+            else{
+                const codeInput = document.getElementById('link-title-input-edit')
+                codeInput.parentElement.querySelector(".error-messages").innerHTML = error.response.data.title
+                codeInput.classList.add("is-invalid")
+                codeInput.classList.remove("is-valid")
+            }
+
+
+        }).then(function () {
+            // always executed
+        });
+    }
+
+    let sendVerificationCodeButtons = document.querySelectorAll(".send-code-button")
+    sendVerificationCodeButtons.forEach(function (element){
+        element.addEventListener("click", function (event) {
+            console.log(event.target)
+            submitVerificationCode(event.target)
+        })
+    })
+
+     let sendLinkButton = document.getElementsByClassName("send-link-button")[0]
+    sendLinkButton.addEventListener("click", (function (event) {
+        submitLink(event.target)
+    }))
+
+    let editLinkButton = document.getElementsByClassName("edit-link-button")[0]
+    editLinkButton.addEventListener("click", (function (event) {
+        editLink(event.target)
+    }))
+
+    let modalElements = document.querySelectorAll(".modal")
+    modalElements.forEach(function (element) {
+        element.addEventListener("hidden.bs.modal", function (event) {
+            const modal = event.target
+            const element = modal.querySelector(".send-contact-button")
+            const contactInputId = element.getAttribute("data-input-id")
+            const contactInput = modal.querySelector("#" + contactInputId)
+            const codeInput = event.target.querySelector("div.contact-verification input")
+            resetStyleAndChanges(element, contactInput, codeInput)
+        })
+    })
+
+    function resetStyleAndChanges(element, contactInput, codeInput) {
+        contactInput.disabled = false;
+        contactInput.value = ""
+        contactInput.parentElement.parentElement.querySelector(".contact-verification").style.display = "none";
+
+        element.parentElement.querySelector(".send-code-button").style.display = "none";
+        element.parentElement.querySelector(".send-contact-button").style.display = "block";
+
+        contactInput.classList.remove("is-valid");
+        contactInput.classList.remove("is-invalid");
+        contactInput.parentElement.querySelector(".success-messages").innerHTML = ""
+        contactInput.parentElement.querySelector(".error-messages").innerHTML = ""
+
+        codeInput.parentElement.querySelector(".success-messages").innerHTML = ""
+        codeInput.parentElement.querySelector(".error-messages").innerHTML = ""
+        codeInput.classList.remove("is-valid")
+        codeInput.classList.remove("is-invalid")
+        codeInput.value = ""
+    }
+
+</script>
+{% endblock %}

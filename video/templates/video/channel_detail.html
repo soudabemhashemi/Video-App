@@ -1,0 +1,86 @@
+{% extends "video/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/toast.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/default-avatar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/video_list_home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="w-100">
+    {% if channel.cover %}
+        <div class="mx-n5">
+            <div style="background-image: url('{{ channel.cover.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center;" class="cover-channel w-100" alt="Cover"/>
+        </div>
+    {% endif %}
+    <div class="{% if not channel.cover %} mx-n5 {% endif %}">
+        <div class="row bg-darkgray m-auto pb-2 pt-3 default-avatar padding-relative">
+            {% if user.is_authenticated and  channel.user == user %}
+                {% include "video/channel_page/auth_user_header.html" %}
+            {% else %}
+                {% include "video/channel_page/usual_user_header.html" %}
+            {% endif %}
+        </div>
+        <div class="top-nav sticky-top upper-z padding-relative" style="height: 47px; top: 60px;">
+            <button class="tab-links display-9 px-2 px-md-4"  onclick="openCategory(event, 'videos')" id="defaultOpen">{% trans 'All videos' %}</button>
+            <button class="tab-links display-9 px-2 px-md-4" onclick="openCategory(event, 'playlists')">{% trans 'Playlists' %}</button>
+            <button class="tab-links display-9 px-2 px-md-4" onclick="openCategory(event, 'subscribers')">{% trans 'Followers' %}</button>
+            <button class="tab-links display-9 px-2 px-md-4" onclick="openCategory(event, 'about')">{% trans 'About' %}</button>
+        </div>
+
+        <div id="videos" class="tab-content padding-relative">
+            {% include "video/channel_page/all_videos.html" %}
+        </div>
+
+        <div id="playlists" class="tab-content padding-relative">
+            {% include "video/channel_page/playlists.html" %}
+        </div>
+
+        <div id="subscribers" class="tab-content padding-relative">
+            {% include "video/channel_page/subscribers.html" %}
+        </div>
+
+        <div id="about" class="tab-content padding-relative">
+            {% include "video/channel_page/about_channel.html" %}
+        </div>
+    </div>
+    </div>
+
+    <div id="toast"></div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function openCategory(evt, category) {
+      var i, tabContent, tabLinks;
+      tabContent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+      }
+      tabLinks = document.getElementsByClassName("tab-links");
+      for (i = 0; i < tabLinks.length; i++) {
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+      }
+      document.getElementById(category).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>
+
+    <script>
+    var serverData = {
+        urls: {
+            login: "{% url 'login' %}"
+        }
+    }
+    </script>
+    <script src="{% static 'video/js/makeCsrftoken.js' %}"></script>
+    <script src="{% static 'video/js/subscription.js' %}"></script>
+    <script src="{% static 'video/js/direction.js' %}"></script>
+    <script src="{% static 'video/js/toast.js' %}"></script>
+    <script src="{% static 'video/js/defaultAvatar.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "video/base.html" %}
+{% block content %}
+    <div class="container-fluid w-100" style="padding-right: 0 !important;">
+        <div class="px-5" style="width: 320px; float: right; margin-left: -320px; padding-right: 0 !important;">
+            {% include "video/playlist/playlist_detail.html" %}
+        </div>
+        <div class="bg-grey" style="margin-right: 320px; height: 100%;" >
+            {% include "video/playlist/playlist_videos.html" %}
+        </div>
+    </div>
+{% endblock %}

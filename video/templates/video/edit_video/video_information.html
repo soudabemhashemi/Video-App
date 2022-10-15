@@ -1,0 +1,249 @@
+{% load i18n %}
+{% load static %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'video/styles/edit_video/video_information.css' %}">
+<div class="video-info-box container bg-light border border-2">
+    <div class="drop-zone d-flex flex-column align-items-center justify-content-center bg-dynamic rounded pointer-cursor px-3 px-lg-5 py-5 mb-3">
+        <div class="video-info-data scrollbar-black row">
+            <div class="col-8">
+                <div class="mb-3">
+                    <label for="inputVideoTitle" class="form-label">{% trans 'Title' %}</label>
+                    <input type="text" class="form-control" id="inputVideoTitle" aria-describedby="titleHelp" value="{{ video.title }}">
+                    <div id="titleHelp" class="form-text">
+                        <small>
+                            {% trans 'Use attractive keywords (English, Persian) related to the video, the title must be meaningful so that the user quickly understands the subject of the video.' %}
+                        </small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">{% trans 'Description' %}</label>
+                    <textarea class="form-control" id="inputVideoDescription" rows="3" aria-describedby="descriptionHelp">{{ video.description }}</textarea>
+                    <div id="descriptionHelp" class="form-text">
+                        <small>
+                            {% trans 'In the description, write useful and sufficient information with meaningful sentences related to the video and avoid repetition of the title and excessive repetition of keywords.' %}
+                        </small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group w-100">
+                        <label for="selectCategory" class="form-label">{% trans 'Category' %}</label>
+                        <select id="selectCategory" class="form-select select-category">
+                            {% if video.category %}
+                                <option value={{ video.category.id }} selected>{{ video.category.title }}</option>
+                            {% else %}
+                                <option disabled selected></option>
+                            {% endif %}
+                            {% for category in categories %}
+                                {% if category.id != video.category.id %}
+                                    <option value={{ category.id }}>{{ category.title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <div id="invalid-url-error" class="invalid-feedback">{% trans 'Choose a category' %}</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="tagsMultiSelect" class="form-label">{% trans 'Tags' %}</label>
+                    <select id="tagsMultiSelect" class="form-control select-tags" multiple="multiple">
+                        {% if video.tags.all %}
+                            {% for tag in video.tags.all %}
+                                <option selected="selected" value="{{ tag.title }}">{{ tag.title }}</option>
+                            {% endfor %}
+                        {% endif %}
+                        {% if video.category.tags %}
+                            {% for tag in video.category.tags.all %}
+                                {% if tag not in video.tags.all %}
+                                    <option value="{{ tag.title }}">{{ tag.title }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="container px-2">
+                    <div class="mb-3" style="height: fit-content;">
+                        <input type="file" class="form-control p-0 pb-1" id="inputNewThumbnail" alt="file" style="visibility: hidden">
+                        <label for="inputNewThumbnail" class="btn btn-outline-secondary form-label w-100">{% trans 'Choose thumbnail' %}</label>
+                    </div>
+                    <div class="d-flex align-items-center bg-darkgray" style="height: 135px; width:240px;">
+                        <img class="px-0"
+                             style="max-height: 135px; max-width:240px; width: fit-content; height: fit-content;"
+                             {% if video.thumbnail %}
+                             src="{{ video.thumbnail.url}}"
+                             {% else %}
+                             src="{% static 'video/images/logo.png' %}"
+                             {% endif %}>
+                    </div>
+                    <div class="mt-4 ">
+                        <label for="playlistSelect" class="form-label">{% trans 'Playlist' %}</label>
+                        <select id="playlistSelect" class="form-control select-playlist px-0">
+                            {%  if video.playlist.title  %}
+                                <option value=-1>{% trans 'Remove from Playlist' %}</option>
+                                <option selected="selected">{{ video.playlist.title }}</option>
+                            {% else %}
+                                <option disabled selected></option>
+                            {% endif %}
+                            {% if channel.playlists.all %}
+                                {% for playlist in channel.playlists.all %}
+                                    {%  if video.playlist.title != playlist.title %}
+                                        <option>{{ playlist.title }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="form-check mt-3 d-flex justify-content-start align-items-center px-0 pt-2">
+                        <input type="checkbox" class="checkbox" id="isVisible" autocomplete="off"
+                               {% if not video.is_visible %}
+                               checked
+                               {% endif %}
+                        >
+                        <label class="form-check-label p-1" for="isVisible">{% trans 'Save as a draft' %}</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-start w-100 pt-4">
+            <div class="col-2">
+                <button id="videoPublishBtn" class="btn we-btn-primary m-1">
+                    {% trans 'Save' %}
+                </button>
+            </div>
+            <div class="col-2 d-flex justify-content-end px-4">
+                <button id="videoDiscardBtn" class="btn we-btn-secondary m-1">
+                    {% trans 'Discard' %}
+                </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script>
+
+      $("#chooseCategoryBtn").click(function () {
+          $("#chooseCategoryModal").modal('hide');
+      })
+
+    $(document).ready(function() {
+
+        $(".select-tags").select2({
+            tags: true,
+            selectOnClose: true,
+        })
+
+        $(".select-playlist").select2({
+            tags: true,
+            placeholder: "{% trans 'Choose playlist' %}",
+        })
+
+        $(".select-category").select2({
+            tags: true,
+            placeholder: "{% trans 'Choose category' %}",
+        })
+
+    });
+
+     $('#selectCategory').change(function () {
+
+         document.getElementById("selectCategory").classList.remove("is-invalid");
+
+        $('#tagsMultiSelect').find('option:not(:selected)').remove();
+
+        let category = $('#selectCategory option:selected').text();
+        {% for tag in tags.all %}
+            if("{{ tag.category.title }}" === category){
+                if($("#tagsMultiSelect option[value='{{ tag.title }}']").length === 0){
+                    $('#tagsMultiSelect').append($('<option>', {
+                        value: "{{ tag.title }}",
+                        text : "{{ tag.title }}"
+                    }));
+                }
+
+            }
+        {% endfor %}
+
+    })
+
+
+    document.getElementById("videoPublishBtn").addEventListener('click', function (event) {
+        let title = document.getElementById('inputVideoTitle').value;
+        let description = document.getElementById('inputVideoDescription').value;
+        let input_category = document.getElementById('selectCategory').value;
+        let is_visible = document.getElementById('isVisible').checked;
+        let formData = new FormData();
+        let tagsList = $('#tagsMultiSelect option:selected').map(function() {
+            return this.value;
+        }).get();
+        let playlist = document.getElementById('playlistSelect').value;
+        let thumbnail = document.getElementById("inputNewThumbnail").files[0];
+
+
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("category", input_category);
+        formData.append("is_visible", !is_visible);
+        formData.append("tags", tagsList);
+        formData.append("playlist", playlist)
+        if (thumbnail)
+            formData.append("thumbnail", thumbnail)
+        if(input_category !== "")
+            editVideo(formData);
+        else
+            document.getElementById("selectCategory").classList.add("is-invalid");
+    })
+
+    document.getElementById("videoDiscardBtn").addEventListener('click', function (event) {
+        window.location.reload()
+    })
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    async function editVideo(formData) {
+        await axios.patch("{% url 'video-api:edit_video_api' code='test' %}".replace("test", window.location.href.split('/').reverse()[1]), formData, {
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+                'Content-Type': 'multipart/form-data'
+            },
+        }).then((response) => {
+            window.location.href = "{% url 'video:my_videos' %}"
+        }, (error) => {
+            console.log(error);
+        });
+    }
+    // TODO: open modal to say if it was successful or redirect
+
+    function go_to_video_page(){
+        window.location.href = "{% url 'video:video-detail' code='test' %}".replace("test", window.location.href.split('/').reverse()[1])
+    }
+
+    async function deleteVideo() {
+        await axios.delete("{% url 'video-api:edit_video_api' code='test' %}".replace("test", window.location.href.split('/').reverse()[1]), {
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+                'Content-Type': 'multipart/form-data'
+            },
+        }).then((response) => {
+            setStatus('Delete successful');
+            window.location.href = "{% url 'video:home' %}"
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
+</script>

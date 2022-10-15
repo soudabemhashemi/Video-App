@@ -1,0 +1,2078 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-03 15:17+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: user/forms/login.py:10 user/forms/password_reset/perform_password_reset.py:8
+#: user/forms/profile.py:32 user/forms/signup/signup.py:20
+msgid "Password"
+msgstr "رمز عبور"
+
+#: user/forms/password_reset/begin_password_reset.py:13
+#: user/forms/password_reset/method_select.py:13
+msgid "Username, mobile or email"
+msgstr "نام کاربری، موبایل یا ایمیل"
+
+#: user/forms/password_reset/begin_password_reset.py:32
+#: user/forms/password_reset/method_select.py:33
+#: user/forms/password_reset/method_select.py:43
+msgid "User not found."
+msgstr "کاربر پیدا نشد."
+
+#: user/forms/password_reset/confirm_password_reset_code.py:11
+msgid "Enter verification code sent to you"
+msgstr "کد تایید ارسال شده را وارد کنید"
+
+#: user/forms/password_reset/confirm_password_reset_code.py:13
+msgid "ٰVerification code"
+msgstr "کد تایید"
+
+#: user/forms/password_reset/confirm_password_reset_code.py:28
+msgid "No code entered."
+msgstr "کد تایید وارد نشده است"
+
+#: user/forms/password_reset/confirm_password_reset_code.py:40
+#, fuzzy
+#| msgid "Invalid verification code."
+msgid "Invalid code"
+msgstr "کد تایید معتبر نیست."
+
+#: user/forms/password_reset/perform_password_reset.py:11
+#: user/forms/signup/signup.py:23
+msgid "Password confirmation"
+msgstr "تکرار رمز عبور"
+
+#: user/forms/password_reset/perform_password_reset.py:19
+msgid "The two password fields didn’t match."
+msgstr ""
+
+#: user/forms/password_reset/send_password_reset.py:11
+msgid "Select one to send password reset code"
+msgstr "یکی از گزینه های زیر را برای ارسال کد تایید انتخاب کنید"
+
+#: user/forms/profile.py:7 user/forms/profile.py:40
+msgid "Type"
+msgstr "نوع"
+
+#: user/forms/profile.py:8 user/forms/profile.py:43 video/models/link.py:16
+#: video/models/link.py:23
+msgid "Link"
+msgstr "پیوند"
+
+#: user/forms/profile.py:14 user/forms/signup/signup.py:12
+msgid "Username"
+msgstr "نام کاربری"
+
+#: user/forms/profile.py:18 user/forms/signup/signup.py:15
+msgid "First name"
+msgstr "نام"
+
+#: user/forms/profile.py:21 user/forms/signup/signup.py:17
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: user/forms/profile.py:24 user/forms/signup/initial_step_mobile.py:12
+#: user/forms/signup/mobile_verification.py:10 user/forms/signup/signup.py:29
+#: video/forms/contactus.py:10
+msgid "Mobile"
+msgstr "موبایل"
+
+#: user/forms/profile.py:28 user/forms/signup/email_verification.py:10
+#: user/forms/signup/initial_step_email.py:11 user/forms/signup/signup.py:52
+#: video/forms/contactus.py:9
+#: video/templates/video/contact_us/contact_us_page.html:27
+msgid "Email"
+msgstr "ایمیل"
+
+#: user/forms/profile.py:36
+#: video/templates/video/channel_page/about_channel.html:5
+msgid "Channel description"
+msgstr "توضیحات کانال"
+
+#: user/forms/signup/email_verification.py:12
+msgid "Enter your email"
+msgstr "ایمیل خود را وارد کنید"
+
+#: user/forms/signup/email_verification.py:16
+#: user/forms/signup/mobile_verification.py:16
+msgid "Verification code"
+msgstr "کد تایید"
+
+#: user/forms/signup/email_verification.py:18
+msgid "Enter verification code sent to your email"
+msgstr "کد تایید ارسال شده به ایمیل خود را وارد کنید"
+
+#: user/forms/signup/email_verification.py:32
+#: user/forms/signup/mobile_verification.py:32 user/views/profile/contact.py:74
+#: user/views/profile/contact.py:116
+msgid "Invalid verification code."
+msgstr "کد تایید معتبر نیست."
+
+#: user/forms/signup/initial_step_email.py:22
+msgid "Invalid email address."
+msgstr "ایمیل معتبر نیست"
+
+#: user/forms/signup/initial_step_email.py:25
+msgid "Email address is already used by another user."
+msgstr "ایمیل توسط کاربر دیگری استفاده شده است"
+
+#: user/forms/signup/initial_step_mobile.py:22 user/utils/validators.py:8
+#: user/views/profile/contact.py:25
+msgid "Invalid mobile number."
+msgstr "شماره موبایل معتبر نیست"
+
+#: user/forms/signup/initial_step_mobile.py:25
+msgid "Mobile number is already used by another user."
+msgstr "شماره موبایل توسط کاربر دیگری استفاده شده است"
+
+#: user/forms/signup/mobile_verification.py:12
+msgid "Enter your mobile number"
+msgstr "شماره موبایل خود را وارد کنید"
+
+#: user/forms/signup/mobile_verification.py:18
+msgid "Enter verification code sent to your mobile"
+msgstr "کد تایید ارسال شده به موبایل خود را وارد کنید"
+
+#: user/templates/user/login.html:27
+#: user/templates/user/password_reset/begin_password_reset.html:31
+#: user/templates/user/password_reset/confirm_password_reset_code.html:31
+#: user/templates/user/password_reset/perform_password_reset.html:31
+#: user/templates/user/password_reset/send_password_reset.html:31
+#: user/templates/user/signup/contact_verification.html:24
+#: user/templates/user/signup/initial_step.html:24
+#: user/templates/user/signup/signup.html:21
+msgid "Login"
+msgstr "ورود"
+
+#: user/templates/user/login.html:30
+#: user/templates/user/password_reset/begin_password_reset.html:30
+#: user/templates/user/password_reset/confirm_password_reset_code.html:30
+#: user/templates/user/password_reset/perform_password_reset.html:30
+#: user/templates/user/password_reset/send_password_reset.html:30
+#: user/templates/user/signup/signup.html:17
+msgid "Signup"
+msgstr "ثبت نام"
+
+#: user/templates/user/login.html:31
+msgid "Reset password"
+msgstr "فراموشی رمز عبور"
+
+#: user/templates/user/navbar.html:35 video/templates/video/navbar.html:35
+msgid "Profile"
+msgstr "پروفایل"
+
+#: user/templates/user/navbar.html:36 video/templates/video/navbar.html:36
+msgid "My channel"
+msgstr "کانال من"
+
+#: user/templates/user/navbar.html:37 video/templates/video/navbar.html:37
+msgid "Logout"
+msgstr "خروج"
+
+#: user/templates/user/password_reset/begin_password_reset.html:27
+#: user/templates/user/password_reset/send_password_reset.html:27
+#: user/templates/user/signup/contact_verification.html:20
+#: user/templates/user/signup/initial_step.html:20
+msgid "Next step"
+msgstr "مرحله بعد"
+
+#: user/templates/user/password_reset/confirm_password_reset_code.html:27
+#: user/templates/user/profile/profile.html:116
+#: video/templates/video/contact_us/contact_us_page.html:52
+#: video/templates/video/play_video/comments.html:23
+#: video/templates/video/play_video/report.html:88
+msgid "Submit"
+msgstr "ثبت"
+
+#: user/templates/user/password_reset/perform_password_reset.html:27
+#, fuzzy
+#| msgid "Reset password"
+msgid "Change password"
+msgstr "فراموشی رمز عبور"
+
+#: user/views/profile/contact.py:70
+msgid "Mobile number updated successfully."
+msgstr "شماره موبایل شما با موفقیت تغییر کرد."
+
+#: user/views/profile/contact.py:112
+msgid "Email updated successfully."
+msgstr "ایمیل شما با موفقیت تغییر کرد."
+
+#: user/views/profile/profile.py:24
+msgid "your info updated successfully."
+msgstr "اطلاعات شما با موفقیت تغییر کرد."
+
+#: user/views/signup/email_signup.py:22
+#: user/views/signup/email_verification.py:44
+#: user/views/signup/initial_step.py:59
+msgid "Signup with mobile number"
+msgstr "ثبت نام با شماره موبایل"
+
+#: user/views/signup/initial_step.py:49 user/views/signup/mobile_signup.py:22
+#: user/views/signup/mobile_verification.py:44
+msgid "Signup with email"
+msgstr "ثبت نام با ایمیل"
+
+#: venv/lib/python3.8/site-packages/django/contrib/messages/apps.py:7
+msgid "Messages"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/contrib/sitemaps/apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/contrib/staticfiles/apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:30
+msgid "…"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:51
+msgid "That page number is not an integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:53
+msgid "That page number is less than 1"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/paginator.py:58
+msgid "That page contains no results"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:93
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:664
+msgid "Enter a valid URL."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:150
+msgid "Enter a valid integer."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:161
+msgid "Enter a valid email address."
+msgstr "یک آدرس ایمیل معتبر وارد کنید."
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: venv/lib/python3.8/site-packages/django/core/validators.py:262
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:269
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:278
+#: venv/lib/python3.8/site-packages/django/core/validators.py:288
+#: venv/lib/python3.8/site-packages/django/core/validators.py:311
+msgid "Enter a valid IPv4 address."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:296
+#: venv/lib/python3.8/site-packages/django/core/validators.py:312
+msgid "Enter a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:306
+#: venv/lib/python3.8/site-packages/django/core/validators.py:310
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:340
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:346
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:379
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:388
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:398
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:413
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:432
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:292
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:327
+msgid "Enter a number."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:434
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:439
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:444
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:506
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/core/validators.py:559
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/base.py:1197
+#: venv/lib/python3.8/site-packages/django/forms/models.py:768
+msgid "and"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/base.py:1199
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:100
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:101
+msgid "This field cannot be null."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:102
+msgid "This field cannot be blank."
+msgstr "این فیلد نمی‌تواند خالی باشد."
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:103
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
+#. Eg: "Title must be unique for pub_date year"
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:107
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:126
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:958
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:959
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:961
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1002
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1096
+msgid "Comma-separated integers"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1145
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1147
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1290
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1150
+msgid "Date (without time)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1288
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1292
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1296
+msgid "Date (with time)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1444
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1446
+msgid "Decimal number"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1585
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1588
+#: video/models/video.py:32
+msgid "Duration"
+msgstr "مدت زمان"
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1638
+msgid "Email address"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1661
+msgid "File path"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1727
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1729
+msgid "Floating point number"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1767
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1769
+msgid "Integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1852
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1867
+msgid "Small integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1875
+msgid "IPv4 address"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1906
+msgid "IP address"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1986
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1987
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1989
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2043
+msgid "Positive big integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2056
+msgid "Positive integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2069
+msgid "Positive small integer"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2083
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2115
+msgid "Text"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2181
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2183
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2186
+msgid "Time"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2312
+#: video/templates/video/playlist/add_video_modal.html:22
+msgid "URL"
+msgstr "لینک"
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2334
+msgid "Raw binary data"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2399
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2401
+msgid "Universally unique identifier"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/files.py:226
+#: video/models/video.py:56
+msgid "File"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/files.py:375
+msgid "Image"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/json.py:18
+msgid "A JSON object"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/json.py:20
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/related.py:790
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/related.py:792
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/related.py:1045
+msgid "One-to-one relationship"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/related.py:1099
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/related.py:1100
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/db/models/fields/related.py:1142
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: venv/lib/python3.8/site-packages/django/forms/boundfield.py:150
+msgid ":?.!"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:54
+msgid "This field is required."
+msgstr "این فیلد الزامی است."
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:247
+msgid "Enter a whole number."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:391
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:1132
+msgid "Enter a valid date."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:415
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:1133
+msgid "Enter a valid time."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:443
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:477
+msgid "Enter a valid duration."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:478
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:538
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:539
+msgid "No file was submitted."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:540
+msgid "The submitted file is empty."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:542
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:545
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:606
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:768
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:858
+#: venv/lib/python3.8/site-packages/django/forms/models.py:1309
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:859
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:974
+#: venv/lib/python3.8/site-packages/django/forms/models.py:1308
+msgid "Enter a list of values."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:975
+msgid "Enter a complete value."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:1191
+msgid "Enter a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/fields.py:1221
+msgid "Enter a valid JSON."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: venv/lib/python3.8/site-packages/django/forms/forms.py:76
+msgid ":"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/forms.py:203
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:61
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:370
+#, python-format
+msgid "Please submit at most %d form."
+msgid_plural "Please submit at most %d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:377
+#, python-format
+msgid "Please submit at least %d form."
+msgid_plural "Please submit at least %d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:405
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:412
+msgid "Order"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/formsets.py:417
+msgid "Delete"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:763
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:767
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:773
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:782
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:1109
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:1193
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/models.py:1311
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/utils.py:172
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/widgets.py:403
+msgid "Clear"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/widgets.py:404
+msgid "Currently"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/widgets.py:405
+msgid "Change"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/widgets.py:714
+msgid "Unknown"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/widgets.py:715
+msgid "Yes"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/forms/widgets.py:716
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:805
+msgid "yes,no,maybe"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:834
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:851
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:853
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:855
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:857
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:859
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/template/defaultfilters.py:861
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dateformat.py:66
+msgid "p.m."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dateformat.py:67
+msgid "a.m."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dateformat.py:72
+msgid "PM"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dateformat.py:73
+msgid "AM"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dateformat.py:146
+msgid "midnight"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dateformat.py:148
+msgid "noon"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:6
+msgid "Monday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:6
+msgid "Tuesday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:6
+msgid "Thursday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:6
+msgid "Friday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:7
+msgid "Saturday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:10
+msgid "Mon"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:10
+msgid "Tue"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:10
+msgid "Wed"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:10
+msgid "Thu"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:10
+msgid "Fri"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:11
+msgid "Sat"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:11
+msgid "Sun"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:14
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:14
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:14
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:14
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:14
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:14
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:15
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:15
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:15
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:15
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:15
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:16
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:19
+msgid "jan"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:19
+msgid "feb"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:19
+msgid "mar"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:19
+msgid "apr"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:19
+msgid "may"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:19
+msgid "jun"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:20
+msgid "jul"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:20
+msgid "aug"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:20
+msgid "sep"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:20
+msgid "oct"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:20
+msgid "nov"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:20
+msgid "dec"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:23
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:24
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:25
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:26
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:27
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:28
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:29
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:30
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:31
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:32
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:33
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:34
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:37
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:38
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:39
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:40
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:41
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:42
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:43
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:44
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:45
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:46
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:47
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/dates.py:48
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/ipv6.py:8
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/text.py:71
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/text.py:240
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: venv/lib/python3.8/site-packages/django/utils/text.py:259
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:94
+msgid ", "
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:9
+#, python-format
+msgid "%d year"
+msgid_plural "%d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%d month"
+msgid_plural "%d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/utils/timesince.py:14
+#, python-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:110
+msgid "Forbidden"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:111
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:115
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your Web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:120
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:124
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
+"\" …> for links to third-party sites."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:132
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:137
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/csrf.py:142
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:41
+msgid "No year specified"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:61
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:111
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:208
+msgid "Date out of range"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:90
+msgid "No month specified"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:142
+msgid "No day specified"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:188
+msgid "No week specified"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:338
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:367
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:594
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/dates.py:628
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/detail.py:54
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/list.py:67
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/list.py:72
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/generic/list.py:154
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/static.py:40
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/static.py:42
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/static.py:80
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:7
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:221
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:207
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:222
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:230
+msgid "Django Documentation"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:231
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:239
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:240
+msgid "Get started with Django"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:248
+msgid "Django Community"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:249
+msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/kombu/transport/qpid.py:1312
+#, python-format
+msgid "Attempting to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/kombu/transport/qpid.py:1317
+#, python-format
+msgid "Connected to qpid with SASL mechanism %s"
+msgstr ""
+
+#: venv/lib/python3.8/site-packages/kombu/transport/qpid.py:1335
+#, python-format
+msgid "Unable to connect to qpid with SASL mechanism %s"
+msgstr ""
+
+#: video/admin.py:12
+msgid "Approve selected videos"
+msgstr "تایید ویدئوهای انتخاب‌شده"
+
+#: video/admin.py:16
+#, python-format
+msgid "%(updated)d video successfully approved."
+msgstr "%(updated)d ویدئو با موفقیت تایید شد."
+
+#: video/admin.py:19
+msgid "Disapprove selected videos"
+msgstr "رد ویدئوهای انتخاب‌شده"
+
+#: video/admin.py:23
+#, python-format
+msgid "%(updated)d video successfully disapproved."
+msgstr "%(updated)d ویدئو با موفقیت رد شد."
+
+#: video/apps.py:8 video/models/video.py:81 video/models/video_format.py:9
+#: video/templates/video/playlist/playlist_detail.html:65
+msgid "Video"
+msgstr "ویدئو"
+
+#: video/forms/contactus.py:8
+msgid "First name and last name"
+msgstr "نام و نام خانوادگی"
+
+#: video/forms/contactus.py:13
+msgid "Message"
+msgstr "پیام"
+
+#: video/models/category.py:6 video/models/channel.py:18
+#: video/models/link.py:15 video/models/playlist.py:9 video/models/tag.py:6
+#: video/templates/video/edit_video/video_information.html:10
+msgid "Title"
+msgstr "عنوان"
+
+#: video/models/category.py:7
+msgid "Icon"
+msgstr "آیکون"
+
+#: video/models/category.py:13 video/models/tag.py:7 video/models/video.py:28
+#: video/templates/video/edit_video/video_information.html:29
+msgid "Category"
+msgstr "دسته بندی"
+
+#: video/models/category.py:14
+msgid "Categories"
+msgstr "دسته بندی‌ها"
+
+#: video/models/channel.py:17
+msgid "Name"
+msgstr "نام"
+
+#: video/models/channel.py:19
+msgid "User"
+msgstr "کاربر"
+
+#: video/models/channel.py:20 video/models/video.py:27
+#: video/templates/video/edit_video/video_information.html:19
+msgid "Description"
+msgstr "توضیحات"
+
+#: video/models/channel.py:45 video/models/link.py:14
+#: video/models/playlist.py:12
+msgid "Channel"
+msgstr "کانال"
+
+#: video/models/channel.py:46
+msgid "Channels"
+msgstr "کانال‌ها"
+
+#: video/models/crawled_video.py:23
+msgid "Crawled video"
+msgstr "ویدیوی خزنده"
+
+#: video/models/crawled_video.py:24
+msgid "Crawled videos"
+msgstr "ویدیوهای خزنده"
+
+#: video/models/link.py:10
+#, fuzzy
+#| msgid "Enter a valid email address."
+msgid "Enter a valid url."
+msgstr "یک آدرس ایمیل معتبر وارد کنید."
+
+#: video/models/link.py:24
+#: video/templates/video/channel_page/about_channel.html:9
+msgid "Links"
+msgstr "پیوندها"
+
+#: video/models/playlist.py:15 video/models/video.py:82
+msgid "Videos"
+msgstr "ویدئوها"
+
+#: video/models/playlist.py:25 video/models/video.py:42
+msgid "privacy"
+msgstr ""
+
+#: video/models/playlist.py:34
+#, fuzzy
+#| msgid "Created at"
+msgid "created_by"
+msgstr "ایجاد شده در"
+
+#: video/models/playlist.py:44
+#: video/templates/video/edit_video/video_information.html:79
+msgid "Playlist"
+msgstr "لیست پخش"
+
+#: video/models/playlist.py:45 video/templates/video/channel_detail.html:28
+msgid "Playlists"
+msgstr "لیست پخش‌ها"
+
+#: video/models/playlist.py:103
+msgid "Added at"
+msgstr ""
+
+#: video/models/playlist.py:106
+#, fuzzy
+#| msgid "playlist order"
+msgid "Playlist order"
+msgstr "ترتیب در لیست پخش"
+
+#: video/models/report.py:8
+msgid "Spam"
+msgstr "هرزنامه ها"
+
+#: video/models/report.py:10
+msgid "Sexual content"
+msgstr "محتوای جنسی"
+
+#: video/models/report.py:12
+msgid "Harmful or dangerous acts"
+msgstr "اعمال مضر یا خطرناک"
+
+#: video/models/report.py:13
+msgid "Child abuse"
+msgstr "کودک آزاری"
+
+#: video/models/report.py:14
+msgid "Promotes terrorism"
+msgstr "تروریسم را ترویج می دهد"
+
+#: video/models/report.py:20
+msgid "False information"
+msgstr "اطلاعات غلط"
+
+#: video/models/report.py:22
+msgid "Infringement of Intellectual Property"
+msgstr "نقض مالکیت معنوی"
+
+#: video/models/report.py:25
+msgid "Insulting ethnicities or racism"
+msgstr "توهین به قومیت ها یا نژادپرستی"
+
+#: video/models/report.py:27
+msgid "Contrast the title and description with the content of the video."
+msgstr "عدم تطابق عنوان و توضیحات با محتوای فیلم"
+
+#: video/models/report.py:29
+msgid "Other"
+msgstr "سایر"
+
+#: video/models/report.py:53
+msgid "More explanation"
+msgstr "توضیح بیشتر"
+
+#: video/models/tag.py:13
+msgid "Tag"
+msgstr "برچسب"
+
+#: video/models/tag.py:14 video/models/video.py:29
+#: video/templates/video/edit_video/video_information.html:46
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+#: video/models/video.py:24
+msgid "Video|Channel"
+msgstr "کانال"
+
+#: video/models/video.py:26
+msgid "Video|Title"
+msgstr "عنوان ویدئو"
+
+#: video/models/video.py:30
+msgid "Source"
+msgstr "منبع"
+
+#: video/models/video.py:67
+msgid "Thumbnail"
+msgstr "تصویر نمایه"
+
+#: video/models/video.py:77
+msgid "Poster"
+msgstr ""
+
+#: video/models/video_format.py:40
+msgid "quality"
+msgstr ""
+
+#: video/models/video_format.py:43
+#, fuzzy
+#| msgid "Video title"
+msgid "Video format"
+msgstr "عنوان ویدئو"
+
+#: video/models/video_format.py:44
+#, fuzzy
+#| msgid "Videos"
+msgid "Video formats"
+msgstr "ویدئوها"
+
+#: video/serializers/other.py:46
+msgid "Your channel already has same type link."
+msgstr "کانال شما قبلاً دارای پیوند مشابه است."
+
+#: video/serializers/other.py:48
+msgid "Your channel already has same link url."
+msgstr "کانال شما قبلاً دارای آدرس اینترنتی مشابه است."
+
+#: video/templates/video/about/about_page.html:6
+#: video/templates/video/sidebar-content.html:61
+msgid "About us"
+msgstr "درباره ما"
+
+#: video/templates/video/channel_detail.html:27
+msgid "All videos"
+msgstr "همه ویدئوها"
+
+#: video/templates/video/channel_detail.html:29
+msgid "Followers"
+msgstr "دنبال‌کنندگان"
+
+#: video/templates/video/channel_detail.html:30
+msgid "About"
+msgstr "درباره"
+
+#: video/templates/video/channel_page/about_channel.html:17
+msgid "Stats"
+msgstr "آمار"
+
+#: video/templates/video/channel_page/about_channel.html:18
+msgid "Joined"
+msgstr "پیوست"
+
+#: video/templates/video/channel_page/all_videos.html:28
+#: video/templates/video/home/videos_list_home.html:49
+#: video/templates/video/play_video/recommand_videos.html:23
+#: video/templates/video/play_video/video_player.html:27
+#: video/templates/video/search/videos_list_search.html:37
+msgid "Seen"
+msgstr "بازدید"
+
+#: video/templates/video/channel_page/auth_user_header.html:21
+#: video/templates/video/channel_page/usual_user_header.html:15
+msgid "Follower"
+msgstr "دنبال‌کننده"
+
+#: video/templates/video/channel_page/auth_user_header.html:25
+#: video/templates/video/play_video/video_player.html:93
+msgid "Edit"
+msgstr "ویرایش"
+
+#: video/templates/video/channel_page/playlists.html:24
+#: video/templates/video/playlist/playlist_detail.html:23
+msgid "Play all."
+msgstr "پخش همه"
+
+#: video/templates/video/channel_page/playlists.html:34
+msgid "View the entire playlist."
+msgstr "مشاهده کل لیست پخش."
+
+#: video/templates/video/channel_page/subscribers.html:14
+#: video/templates/video/channel_page/usual_user_header.html:20
+#: video/templates/video/play_video/video_player.html:82
+#: video/templates/video/play_video/video_player.html:84
+msgid "Follow"
+msgstr "دنبال کردن"
+
+#: video/templates/video/channel_page/subscribers.html:15
+#: video/templates/video/channel_page/usual_user_header.html:21
+#: video/templates/video/play_video/video_player.html:87
+#: video/templates/video/play_video/video_player.html:89
+msgid "Unfollow"
+msgstr "لغو دنبال کردن"
+
+#: video/templates/video/contact_us/contact_us_page.html:12
+#: video/templates/video/sidebar-content.html:69
+msgid "Contact us"
+msgstr "تماس با ما"
+
+#: video/templates/video/contact_us/contact_us_page.html:13
+msgid "You can use the following communication channels to contact us."
+msgstr "برای ارتباط با ما می‌توانید از راه‌های ارتباطی زیر استفاده کنید."
+
+#: video/templates/video/contact_us/contact_us_page.html:19
+msgid "Address:"
+msgstr "آدرس:"
+
+#: video/templates/video/contact_us/contact_us_page.html:23
+msgid "Phone number:"
+msgstr "تلفن:"
+
+#: video/templates/video/edit_video/video_information.html:14
+msgid ""
+"Use attractive keywords (English, Persian) related to the video, the title "
+"must be meaningful so that the user quickly understands the subject of the "
+"video."
+msgstr ""
+"از کلمات کلیدی جذاب (انگلیسی ، فارسی) مربوط به فیلم استفاده کنید ، عنوان "
+"باید معنی دار باشد تا کاربر به سرعت موضوع ویدیو را درک کند"
+
+#: video/templates/video/edit_video/video_information.html:23
+msgid ""
+"In the description, write useful and sufficient information with meaningful "
+"sentences related to the video and avoid repetition of the title and "
+"excessive repetition of keywords."
+msgstr ""
+"در توضیحات ، اطلاعات مفید و کافی با جملات معنی دار مربوط به فیلم بنویسید و "
+"از تکرار عنوان و تکرار بیش از حد کلمات کلیدی خودداری کنید."
+
+#: video/templates/video/edit_video/video_information.html:42
+msgid "Choose a category"
+msgstr "دسته بندی انتخاب کنید."
+
+#: video/templates/video/edit_video/video_information.html:67
+msgid "Choose thumbnail"
+msgstr "تصویر نمایه را انتخاب کنید"
+
+#: video/templates/video/edit_video/video_information.html:82
+msgid "Remove from Playlist"
+msgstr "حذف از لیست پخش"
+
+#: video/templates/video/edit_video/video_information.html:102
+msgid "Save as a draft"
+msgstr "ذخیره به عنوان پیش نویس"
+
+#: video/templates/video/edit_video/video_information.html:110
+msgid "Save"
+msgstr "ذخیره"
+
+#: video/templates/video/edit_video/video_information.html:115
+msgid "Discard"
+msgstr "لغو"
+
+#: video/templates/video/edit_video/video_information.html:138
+msgid "Choose playlist"
+msgstr "لیست پخش"
+
+#: video/templates/video/edit_video/video_information.html:143
+msgid "Choose category"
+msgstr "دسته بندی"
+
+#: video/templates/video/my_videos/my_videos_page.html:11
+msgid "My videos"
+msgstr "ویدئوهای من"
+
+#: video/templates/video/my_videos/my_videos_page.html:27
+msgid "upload video"
+msgstr "بارگذاری ویدئو"
+
+#: video/templates/video/navbar.html:14
+msgid "Search"
+msgstr "جستجو کردن"
+
+#: video/templates/video/play_video/comments.html:4
+msgid "Comments"
+msgstr "نظر"
+
+#: video/templates/video/play_video/comments.html:20
+msgid "Add a public comment..."
+msgstr "افزودن نظر عمومی ..."
+
+#: video/templates/video/play_video/comments.html:22
+msgid "Cancel"
+msgstr "لغو کردن"
+
+#: video/templates/video/play_video/comments.html:30
+msgid "To submit your comment, please first "
+msgstr "برای ارسال نظر خود ، لطفا ابتدا در"
+
+#: video/templates/video/play_video/comments.html:31
+msgid "here"
+msgstr "اینجا"
+
+#: video/templates/video/play_video/comments.html:32
+msgid "log in"
+msgstr "وارد شوید."
+
+#: video/templates/video/play_video/recommand_videos.html:5
+msgid "Suggested videos"
+msgstr "ویدئوهای پیشنهادی"
+
+#: video/templates/video/play_video/report.html:75
+msgid "Why are you reporting this video?"
+msgstr "چرا این ویدئو را گزارش می کنید؟"
+
+#: video/templates/video/play_video/report.html:76
+msgid "Your report is anonymous, unless you report copyright infringement."
+msgstr "گزارش شما ناشناس است ، مگر اینکه نقض مالکیت معتوی را گزارش کنید."
+
+#: video/templates/video/play_video/report.html:77
+msgid "Video title"
+msgstr "عنوان ویدئو"
+
+#: video/templates/video/play_video/report.html:80
+msgid "Choose the reason for your report or write to us."
+msgstr "دلیل گزارش خود را انتخاب کنید یا برای ما بنویسید."
+
+#: video/templates/video/play_video/report.html:96
+msgid "Report submission"
+msgstr "ارائه گزارش"
+
+#: video/templates/video/play_video/report.html:106
+msgid "Return"
+msgstr "برگشت"
+
+#: video/templates/video/play_video/video_player.html:38
+msgid "Report abuse"
+msgstr "گزارش تخلف"
+
+#: video/templates/video/play_video/video_player.html:44
+msgid "Download"
+msgstr "دانلود"
+
+#: video/templates/video/play_video/video_player.html:51
+#: video/templates/video/playlist/playlist_detail.html:35
+msgid "Watch later"
+msgstr "بعداً ببینید"
+
+#: video/templates/video/play_video/video_player.html:53
+#: video/templates/video/play_video/video_player.html:54
+msgid "Share"
+msgstr "اشتراک گذاری"
+
+#: video/templates/video/play_video/video_player.html:56
+msgid "I did not like it."
+msgstr "دوستش نداشتم."
+
+#: video/templates/video/play_video/video_player.html:59
+msgid "I liked it."
+msgstr "خوشم آمد."
+
+#: video/templates/video/playlist/add_by_URL.html:6
+msgid "Paste your URL here"
+msgstr "لینک خود را درج کنید"
+
+#: video/templates/video/playlist/add_by_URL.html:10
+msgid "check"
+msgstr "بررسی"
+
+#: video/templates/video/playlist/add_by_URL.html:44
+msgid "invalid URL"
+msgstr "لینک معتبر نیست"
+
+#: video/templates/video/playlist/add_by_URL.html:77
+msgid "Video not found"
+msgstr "ویدئو پیدا نشد"
+
+#: video/templates/video/playlist/add_video_modal.html:11
+msgid "Add video to playlist"
+msgstr "افزودن ویدئو به لیست پخش"
+
+#: video/templates/video/playlist/add_video_modal.html:27
+msgid "Your videos"
+msgstr "ویدئوهای من"
+
+#: video/templates/video/playlist/add_video_modal.html:48
+msgid "Add"
+msgstr "افزودن"
+
+#: video/templates/video/playlist/add_video_modal.html:53
+msgid "Close"
+msgstr "بستن"
+
+#: video/templates/video/playlist/add_video_modal.html:64
+msgid "Adding video failed"
+msgstr "افزودن ویدئو ناموفق بود"
+
+#: video/templates/video/playlist/add_video_modal.html:139
+msgid "Input should be valid"
+msgstr "لینک بررسی نشده است"
+
+#: video/templates/video/playlist/playlist_detail.html:37
+#: video/templates/video/sidebar-content.html:13
+#: video/templates/video/user_lists/videos_list.html:19
+msgid "Favourites"
+msgstr "موارد دلخواه"
+
+#: video/templates/video/playlist/playlist_videos.html:63
+msgid "Removing video failed"
+msgstr "حذف ویدئو ناموفق بود"
+
+#: video/templates/video/search/search_filters.html:8
+msgid "Any time period"
+msgstr "هر دوره زمانی"
+
+#: video/templates/video/search/search_filters.html:9
+msgid "Less than 5 minutes"
+msgstr "کمتر از 5 دقیقه"
+
+#: video/templates/video/search/search_filters.html:10
+msgid "Between 5 and 20 minutes"
+msgstr "بین 5 تا 20 دقیقه"
+
+#: video/templates/video/search/search_filters.html:11
+msgid "More than 20 minutes"
+msgstr "بیش از 20 دقیقه"
+
+#: video/templates/video/search/search_filters.html:19
+msgid "In any order"
+msgstr "به هر ترتیب"
+
+#: video/templates/video/search/search_filters.html:20
+msgid "The newest"
+msgstr "جدیدترین"
+
+#: video/templates/video/search/search_filters.html:21
+msgid "The oldest"
+msgstr "قدیمی ترین"
+
+#: video/templates/video/search/search_filters.html:22
+msgid "Most visited"
+msgstr "بیشترین بازدید"
+
+#: video/templates/video/search/search_filters.html:23
+msgid "Lowest views"
+msgstr "کمترین بازدید"
+
+#: video/templates/video/search/search_filters.html:31
+msgid "Filter"
+msgstr "فیلتر"
+
+#: video/templates/video/sidebar-content.html:5
+msgid "Main Page"
+msgstr "صفحه اصلی"
+
+#: video/templates/video/sidebar-content.html:9
+#: video/templates/video/user_lists/videos_list.html:21
+msgid "Views"
+msgstr "بازدیدها"
+
+#: video/templates/video/sidebar-content.html:17
+#: video/templates/video/user_lists/videos_list.html:17
+msgid "See it later"
+msgstr "بعداً تماشا کنید."
+
+#: video/templates/video/sidebar-content.html:35
+msgid "More"
+msgstr "بیشتر"
+
+#: video/templates/video/sidebar-content.html:53
+msgid "Less"
+msgstr "کمتر"
+
+#: video/templates/video/sidebar-content.html:65
+msgid "The rules"
+msgstr "قوانین"
+
+#: video/templates/video/upload_video/upload_video.html:17
+msgid "Upload video"
+msgstr "بارگذاری ویدئو"
+
+#: video/templates/video/upload_video/upload_video.html:20
+msgid "Select your file or drag and drop your file here."
+msgstr "فایل خود را انتخاب کنید یا فایل خود را اینجا بکشید و رها کنید."
+
+#: video/templates/video/upload_video/upload_video.html:27
+msgid "File selection"
+msgstr "انتخاب فایل"
+
+#: video/views/contactus.py:13 video/views/video.py:83
+msgid "Form submission successful"
+msgstr "ارسال فرم با موفقیت انجام شد."
+
+#: video/views_api/events/like.py:40
+msgid "Added to liked videos."
+msgstr "به موردعلاقه‌ها اضافه شد."
+
+#: video/views_api/events/like.py:42
+msgid "Removed from liked videos."
+msgstr "از موردعلاقه‌ها حذف شد."
+
+#: video/views_api/events/like.py:64
+msgid "Added to disliked videos."
+msgstr "به غیرموردعلاقه‌ها اضافه شد."
+
+#: video/views_api/events/like.py:66
+msgid "Removed from disliked videos."
+msgstr "از غیرموردعلاقه‌ها حذف شد "
+
+#: video/views_api/events/watch_later.py:20
+msgid "Invalid action, choices are: (add, remove)"
+msgstr ""
+
+#: video/views_api/events/watch_later.py:24
+msgid "Video is required."
+msgstr "ویدئو مورد نیاز است."
+
+#: video/views_api/events/watch_later.py:29
+#, fuzzy
+#| msgid "Video not found"
+msgid "Video not found."
+msgstr "ویدئو پیدا نشد"
+
+#: video/views_api/events/watch_later.py:34
+msgid "Added to watch later."
+msgstr "اضافه شد تا بعداً تماشا شود."
+
+#: video/views_api/events/watch_later.py:37
+msgid "Removed from watch later."
+msgstr "از لیست تماشا برداشته شد."
+
+#: video/views_api/link.py:21 video/views_api/link.py:25
+msgid "Your link has been successfully registered."
+msgstr "لینک شما با موفقیت ثبت شد."
+
+#~ msgid "Policies"
+#~ msgstr "سیاست ها"
+
+#~ msgid "Alright"
+#~ msgstr "باشه"
+
+#~ msgid "The order in the playlist could not exceed its size."
+#~ msgstr "ترتیب لیست پخش نمی تواند از اندازه آن تجاوز کند."
+
+#~ msgid "Watched at"
+#~ msgstr "تماشا شده در"
+
+#~ msgid "PUBLIC"
+#~ msgstr "عمومی"
+
+#~ msgid "UNLISTED"
+#~ msgstr "لیست نشده"
+
+#~ msgid "PRIVATE"
+#~ msgstr "شخصی"

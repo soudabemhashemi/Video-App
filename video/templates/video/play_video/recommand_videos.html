@@ -1,0 +1,29 @@
+{% load static %}
+{% load i18n %}
+
+<div class="aside-recommend px-0 {% if playlist %}mt-4{% endif %}" id="list">
+        <h5 class="rtl text-end border-bottom border-8 border-secondary pb-2"> {% trans 'Suggested videos' %}</h5>
+        {% for video in recommend %}
+            <a class="row text-black py-1 mx-0" href="{% url 'video:video-detail' code=video.code %}">
+                <div class="px-0" style="position: relative; width: 168px; height: 94px;">
+                        <img alt="thumbnail" class="mx-0"
+                             {% if video.thumbnail %}
+                             src="{{video.thumbnail.url}}"
+                             {% else %}
+                             src="{% static 'video/images/logo.png' %}"
+                             {% endif %}
+                             height="94"
+                             width="168">
+                    <div class="badge bg-secondary shadow position-absolute" style="bottom: 6px; right: 6px; border-radius:8px;">{{ video.duration_str }}</div>
+                </div>
+                <div class="col pe-2 d-grid auto-direction">
+                    <h6 class="text-end two-line pt-1" style="margin-bottom: 4px; font-size: 0.9rem;">{{video.title}}</h6>
+                    <p class="text-end mb-0 text-muted fs-8">{{video.channel.title}}</p>
+                    <div class="row text-muted fs-8 rtl">
+                        <p class='col-auto float-right pl-5'> {{video.total_views}} {% trans 'Seen' %} </p>
+                        <p class="col ms-0 p-0 text-end" style="display: list-item">{{video.string_date}}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>

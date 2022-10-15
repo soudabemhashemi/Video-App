@@ -1,0 +1,157 @@
+{% load i18n %}
+{% load static %}
+{% include "video/playlist/add_video_modal.html" %}
+<div>
+    <div style="position: relative" id="playlist-first-video-thumbnail">
+        <div>
+            <img class="image"
+                 {% if playlist.first_video.thumbnail %}
+                 src="{{ playlist.first_video.thumbnail.url }}"
+                 {% else %}
+                 src="{% static 'video/images/logo.png' %}"
+                 {% endif %}
+                 alt="avatar">
+        </div>
+
+        {% if playlist.videos.all %}
+            <div class="row">
+            <a style="width: 100%" href="{% url 'video:video-detail' code=playlist.first_video.code %}?playlist={{ playlist.code }}">
+            <div class="position-absolute d-flex justify-content-center align-items-center w-100"
+                 style=" bottom: 0px; right: 0px; height: 20%; background-color: #000000A5">
+                <i class="bi bi-play-fill" style="height: 20px; width: 20px; color: white"></i>
+                <p class="m-0" style="color: white">
+                    {% trans "Play all." %}
+                </p>
+            </div>
+                </a>
+        </div>
+        {% endif %}
+    </div>
+    <div id="playlist-detail" class="mt-3">
+        <div class="row" id="playlist-title-row">
+            <div class="col-10">
+                <h5 class="m-0" id="show-playlist-title">
+                    {% if watch_later %}
+                        {% trans "Watch later" %}
+                    {% elif liked %}
+                        {% trans "Favourites" %}
+                    {% else %}
+                        {{ playlist.title }}
+                    {% endif %}
+                </h5>
+            </div>
+            <div class="col-2">
+                {% if not watch_later and not liked %}
+                    <button id="open-edit-title">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row" id="playlist-edit-title-row" style="display: none;">
+            <div class="input-group mb-3">
+                <input type="text" value="{{ playlist.title }}" class="form-control" placeholder="" aria-label=""
+                       aria-describedby="basic-addon1" style="" id="playlist_title_input">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary h-100" id="close-edit-title" type="button"
+                            style="border-right: 0;">
+                        <i class="bi bi-check-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <p class="text-muted">
+            <small>
+                {{ playlist.videos.count }} {% trans "Video" %}
+            </small>
+        </p>
+    </div>
+    {% if watch_later or liked %}
+    {% else %}
+        <div id="playlist-privacy">
+            <select class="form-select form-select-sm" id="playlist-privacy-select"
+                    style="border: 0 !important; background-color: inherit !important;"
+                    aria-label=".form-select-sm example">
+                {% for privacy in playlist.PRIVACY_CHOICES %}
+                    {% if playlist.privacy == privacy.1 %}
+                        <option selected value="{{ privacy.0 }}">{%  trans privacy.1 %}</option>
+                    {% else %}
+                        <option value="{{ privacy.0 }}">{%  trans privacy.1 %}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+        <div id="playlist-edit" class="mt-3">
+            <div class="row">
+                    <a class="btn" id="video-add-btn" style="width: fit-content;">
+                        <i class="bi bi-plus-lg"></i>
+                    </a>
+                    <a class="btn" style="width: fit-content; display: none">
+                        <i class="bi bi-share"></i>
+                    </a>
+            </div>
+        </div>
+    {% endif %}
+    <div id="channel-box" class="border-top mt-2 pt-1">
+        <div class="channel-detail pt-2" style="width: fit-content">
+            <a href="{% url 'video:channel-detail' playlist.channel.name %}">
+                <div style="height: 60px; weight: 60px; float: right; margin-left: -60px">
+                     <img alt="Channel Picture"
+                          {% if playlist.channel.avatar %}
+                          src="{{ playlist.channel.avatar.url }}"
+                          {% else %}
+                          src="{% static 'video/images/logo.png' %}"
+                          {% endif %}
+                          class="channel-picture ml-3 rounded-circle float-right"
+                          style="height: 60px; width: 60px; object-fit: cover">
+                </div>
+                <div class="d-flex align-items-center px-2" style="margin-right: 60px; height: 60px">
+                        {{ playlist.channel.title }}
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#video-add-btn").click(function () {
+        $("#add-video-to-playlist").modal('show');
+    })
+    $("#playlist-privacy-select").select2();
+    $("#playlist-privacy-select").change(function () {
+        let formData = new FormData();
+        formData.append("privacy", $(this).find(":selected").val());
+        playlist(formData);
+    })
+    $('#open-edit-title').click(function () {
+        document.getElementById('playlist-title-row').style.display = "none";
+        document.getElementById('playlist-edit-title-row').style.display = "";
+    })
+    $('#close-edit-title').click(function () {
+        document.getElementById('playlist-title-row').style.display = "";
+        document.getElementById('playlist-edit-title-row').style.display = "none";
+        let formData = new FormData();
+        formData.append('title', document.getElementById('playlist_title_input').value);
+        playlist(formData);
+    })
+
+    {% if playlist.channel.user != user %}
+        $('#open-edit-title').remove()
+        $("#video-add-btn").remove()
+        $("#playlist-privacy").remove()
+    {% endif %}
+
+    async function playlist(formData) {
+        await axios.patch("{% url 'video-api:playlists_api' id=playlist.id %}", formData, {
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken"),
+                'Content-Type': 'multipart/form-data'
+            },
+        }).then((response) => {
+            document.getElementById('show-playlist-title').innerText = document.getElementById('playlist_title_input').value;
+        }, (error) => {
+            window.location.href = ''
+            console.log(error);
+        });
+    }
+</script>

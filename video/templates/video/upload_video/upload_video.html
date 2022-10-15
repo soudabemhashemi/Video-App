@@ -1,0 +1,123 @@
+{% load i18n %}
+{% load static %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'video/styles/upload_video/upload_video.css' %}">
+<div class="container bg-light" style="max-width: 1000px;">
+    <div class="drop-zone d-flex flex-column align-items-center justify-content-center bg-dynamic rounded pointer-cursor px-3 px-lg-5 py-5 mb-3">
+
+        <div class="drag-area" id="drag-area">
+            <div class="upload-icon rounded-circle p-4">
+                <svg role="img" class="icon d-flex align-content-center flex-wrap text-dynamic-half-dark"
+                     width=150px height=150px>
+                    <image href="{% static 'video/images/add_video_file.svg' %}"/>
+                </svg>
+            </div>
+            <div class="drag-text py-4">
+                <h5 class="text-muted text-center">
+                    {% trans 'Upload video' %}
+                </h5>
+                <p class="text-muted text-center">
+                    {% trans 'Select your file or drag and drop your file here.' %}
+                </p>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div>
+                    <input type="file" id="upload-video-btn" accept="video/*" hidden/>
+                    <label for="upload-video-btn" class="btn we-btn-primary">
+                        {% trans 'File selection' %}
+                    </label>
+                </div>
+            </div>
+            <input type="file" hidden>
+        </div>
+
+        <script>
+
+            let inputElement = document.getElementById("upload-video-btn")
+            inputElement.onchange = function (event) {
+                let file = inputElement.files[0];
+                uploadFile(file)
+            }
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            function dragOverHandler(event) {
+                let drag_area = document.getElementById("drag-area");
+                drag_area.style.backgroundColor = "white";
+                drag_area.style.boxShadow = "0px 0px 16px black";
+                event.preventDefault();
+            }
+
+            function dragLeaveHandler(event) {
+                let drag_area = document.getElementById("drag-area");
+                drag_area.style.backgroundColor = "antiquewhite";
+                drag_area.style.boxShadow = "0px 0px 0px black";
+                event.preventDefault();
+            }
+
+            function dropHandler(event) {
+                event.preventDefault();
+                if (event.dataTransfer.items) {
+                    for (let i = 0; i < event.dataTransfer.items.length; i++) {
+                        if (event.dataTransfer.items[i].kind === 'file') {
+                            let file = event.dataTransfer.items[i].getAsFile();
+                            uploadFile(file)
+                        }
+                    }
+                }
+            }
+
+            let drag_area = document.getElementById("drag-area")
+            drag_area.addEventListener(
+                'dragover',
+                dragOverHandler
+            )
+            drag_area.addEventListener(
+                'dragleave',
+                dragLeaveHandler
+            )
+            drag_area.addEventListener(
+                'drop',
+                dropHandler
+            )
+
+            async function uploadFile(fileUpload) {
+                let formData = new FormData();
+                formData.append("file", fileUpload);
+                formData.append("title", fileUpload.name)
+                formData.append("description", "")
+
+                await axios.post("{% url 'video-api:upload_video_api' %}", formData, {
+                    headers: {
+                        "X-CSRFToken": getCookie("csrftoken"),
+                        'Content-Type': 'multipart/form-data'
+                    },
+                }).then((response) => {
+                    let code = response.data.code
+                    document.location.href = video_edit_url(code)
+                }, (error) => {
+                    console.log(error);
+                });
+            }
+
+            function video_edit_url(code){
+                return "{% url 'video:edit_video' code='house' %}".replace('house', code);
+            }
+
+        </script>
+
+    </div>
+</div>

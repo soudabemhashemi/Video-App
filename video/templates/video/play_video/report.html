@@ -1,0 +1,119 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.rtl.min.css"
+        integrity="sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'video/fonts/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/main.css' %}">
+    <title>گزارش</title>
+
+    <style>
+        .remove_marker ul {
+            list-style: none;
+            padding-right: 5px;
+        }
+
+        form{
+            background: #fbfbfc;
+            width: 32%;
+        }
+
+        form p{
+            margin-bottom: 0px;
+            margin-top: 30px;
+            padding-right: 10px;
+        }
+
+        ul li label{
+            margin-bottom: 2px;
+        }
+
+        .fs-8 {
+            font-size: 80%;
+            font-weight: 400;
+        }
+
+        .we-btn-primary{
+            background-color: #CC0000;
+            border: none;
+            color: white;
+            padding: 8px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .we-btn-secondary{
+            color: #fff;
+            background-color: #6c757d;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+            width: 100px;
+            height: 32px;
+            padding: 4px;
+        }
+    </style>
+</head>
+
+<body {% if messages %} class="modal-open" style="overflow: hidden; padding-right: 15px;" {% endif %}>
+    <div class="d-flex align-items-center justify-content-center min-vh-100 mt-4">
+        <form class="auth-form border px-4 py-5 rounded" method="post">
+            <h4 class="text-center mb-3">{% trans 'Why are you reporting this video?' %}</h4>
+            <p class="text-center text-muted fs-8">{% trans 'Your report is anonymous, unless you report copyright infringement.' %}</p><br>
+            <label class="d-flex text-end mt-4 mb-3">{% trans 'Video title' %}</label>
+            <input class="form-control" type="text" placeholder="{{ video.title }}" readonly>
+            {% csrf_token %}
+            <p class="text-end">{% trans 'Choose the reason for your report or write to us.' %}</p>
+            {% for field in form.visible_fields %}
+                <div class="">
+                    <label for="{{ field.id_for_label }}" class="m-1"></label>
+                    <div class="m-2 text-end remove_marker">{{ field }}</div>
+                </div>
+            {% endfor %}
+            <div class="pb-4 mt-5">
+                <button type="submit" class="we-btn-primary w-100">{% trans 'Submit' %}</button>
+            </div>
+
+            {% if messages %}
+            <div class="modal fade show" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="display: block;" aria-modal="true" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{% trans 'Report submission' %}</h5>
+                  </div>
+                  <div class="modal-body">
+                   <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="text-success {{ message.tags }} " {% endif %}> {{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <a type="button" class="we-btn-secondary" href="{% url 'video:video-detail' code=video.code %}">{% trans 'Return' %}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+
+    {% if messages %}
+        <div class="modal-backdrop fade show"></div>
+    {% endif %}
+</body>
+</html>

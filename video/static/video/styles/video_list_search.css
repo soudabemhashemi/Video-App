@@ -1,0 +1,33 @@
+.image-max-size{
+    max-height: 135px;
+    max-width: 240px;
+}
+
+.video-thumbnail{
+    width: fit-content;
+    height: fit-content;
+}
+
+.two-line-overflow{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.channel-picture{
+    height: auto;
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.thumbnail-badge{
+    bottom: 8px;
+    right: 8px;
+    border-radius: 8px;
+}
+
+.thumbnail-card{
+
+}

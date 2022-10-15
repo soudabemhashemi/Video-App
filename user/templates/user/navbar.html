@@ -1,0 +1,45 @@
+{% load static %}
+{% load i18n %}
+<nav id="navbar">
+    <div class="d-flex align-items-center">
+{#        <button type="button" class="fab ms-3 d-flex" onclick="toggleSidebar()">#}
+{#            <i class="bi bi-list"></i>#}
+{#        </button>#}
+        <a href="/" class="mx-3" style="font-size: 0;">
+            <img src="{% static 'video/images/logo.png' %}" width="80" height="30">
+        </a>
+    </div>
+
+{#    <form class="d-flex input-group">#}
+{#        <input class="form-control" type="text" placeholder="Search" aria-label="Search">#}
+{#        <button class="btn enable-color" type="submit">#}
+{#            <i class="bi bi-search"></i>#}
+{#        </button>#}
+{#    </form>#}
+
+    <div class="d-flex align-items-center me-2">
+        <div>
+            <button type="button" class="fab d-none d-lg-flex">
+                <a href="{% url 'video:my_videos' %}">
+                    <i class="bi bi-folder-plus"></i>
+                </a>
+            </button>
+        </div>
+        <button type="button" class="fab my-2 d-none d-lg-flex">
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'video:channel-detail' user.channel.name %}">{% trans "My channel" %}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}"><i class="bi bi-person-fill"></i></a>
+            {% endif %}
+        </button>
+    </div>
+</nav>

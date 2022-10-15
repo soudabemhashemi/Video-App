@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+    <div class="avatar px-0" style="width: 80px;">
+        <a href="edit/image/">
+            <div class="pdf-thumb-box-overlay">
+                <span class="fa-stack fa-lg rounded-circle">
+                    <i class="bi bi-camera-fill"></i>
+                </span>
+            </div>
+
+            {% if channel.avatar %}
+                <img src="{{channel.avatar.url}}" alt="Avatar" class="rounded-circle" style="object-fit: cover;" width="80" height="80">
+            {% else %}
+                <div id="profileImage" class="rounded-circle fs-2" style="  object-fit: fill; padding-top: 1.2rem; width: 80px; height: 80px;"></div>
+            {% endif %}
+        </a>
+    </div>
+
+    <div class="col text-end px-0" style="margin-right: 24px;">
+        <h4 class="my-1 mt-sm-4" id="name">{{ channel.title }}</h4>
+        <p class="px-0">{{ channel.subscribers.count }} {% trans 'Follower' %}</p>
+    </div>
+
+    <div class="px-0" style="direction: initial; width: 117px;">
+        <button type="submit" class="we-btn btn-blue position-absolute text-center mt-3" style="width: 117px;">{% trans 'Edit' %} </button>
+    </div>

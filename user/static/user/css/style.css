@@ -1,0 +1,17 @@
+.auth-form {
+    width: 90%;
+    max-width: 400px;
+}
+
+.auth-form a {
+    text-decoration: none;
+}
+
+.profile-form {
+    max-width: 600px;
+}
+
+.profile-form a {
+    text-decoration: none;
+    margin-right: .3rem;
+}

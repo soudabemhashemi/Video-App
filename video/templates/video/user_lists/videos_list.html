@@ -1,0 +1,25 @@
+{% load i18n %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'video/IRANSans.css' %}">
+
+<div class="column bg-light">
+    <div class="row p-1 my-4">
+        <div class="col align-self-center" style="width: fit-content; height: fit-content;">
+            <h3 id="page_name_h3"></h3>
+        </div>
+    </div>
+</div>
+{% include "video/search/videos_list_search.html" %}
+
+<script>
+    function setTitle() {
+        if(window.location.href.includes("watch_later")){
+            document.getElementById("page_name_h3").innerText = {% trans 'See it later' %}
+        } else if(window.location.href.includes("liked")){
+            document.getElementById("page_name_h3").innerText = {% trans 'Favourites' %}
+        } else if(window.location.href.includes("history")){
+            document.getElementById("page_name_h3").innerText = {% trans 'Views' %}
+        }
+    }
+    setTitle();
+</script>

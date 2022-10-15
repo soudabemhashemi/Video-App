@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WeTheo</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.rtl.min.css"
+        integrity="sha256-22wR6QTidoeiRZXp6zkRQyMSUb/FB+Av11jqmZJF6uU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'video/fonts/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'video/styles/sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'user/css/style.css' %}">
+</head>
+
+<body>
+    {% include "user/navbar.html" %}
+    {% block content %}
+    {% endblock content %}
+</body>
+{% block script %}
+{% endblock %}
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}
+    <div class="avatar px-0" style="width: 80px;">
+        {% if channel.avatar %}
+            <img src="{{channel.avatar.url}}" alt="Avatar" class="rounded-circle" style="object-fit: cover;" width="80" height="80">
+        {% else %}
+            <div id="profileImage" class="rounded-circle fs-2" style="object-fit: fill; padding-top: 1.2rem; width: 80px; height: 80px;"></div>
+        {% endif %}
+    </div>
+
+    <div class="col text-end px-0" style="margin-right: 24px;">
+        <h4 class="my-1 mt-sm-4" id="name">{{ channel.title }}</h4>
+        <div class="row">
+            <p class="col-auto" id="number-of-subscribers">{{ channel.subscribers.count }}</p>
+            <p class="col px-0">{% trans 'Follower' %}</p>
+        </div>
+    </div>
+
+    <div class="px-0" style="direction: initial; width: 117px;">
+        <button id="subscribe-this" type="submit" class="we-btn we-btn-subscribe position-absolute text-center mt-3 px-3 {% if user.channel in channel.subscribers.all %} d-none {% else %} d-initial {% endif %}" onclick="subscribe(this, 'unsubscribe-this')" style="width: 117px; padding-top: 10px; padding-bottom: 10px; font-size: 14px;" path="{% url 'video-api:subscribe_api' pk=channel.id %}"> {% trans 'Follow' %} </button>
+        <button id="unsubscribe-this" type="submit" class="we-btn we-btn-unsubscribe position-absolute text-center mt-3 px-3 {% if user.channel in channel.subscribers.all %} d-flex {% else %} d-none {% endif %}" onclick="unsubscribe(this, 'subscribe-this')"  style="width: 117px; padding-top: 10px; padding-bottom: 10px; font-size: 14px;" path="{% url 'video-api:unsubscribe_api' pk=channel.id %}"> {% trans 'Unfollow' %} </button>
+    </div>

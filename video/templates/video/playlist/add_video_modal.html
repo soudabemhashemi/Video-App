@@ -1,0 +1,145 @@
+{% load i18n %}
+<div class="modal fade" id="add-video-to-playlist" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header pb-0">
+                <div class="container-fluid">
+                    <div class="row d-flex justify-content-between py-2">
+                        <div class="col-11">
+                            <h5 class="modal-title" id="staticBackdropLabel"
+                                style="width: fit-content">
+                                {% trans "Add video to playlist" %}
+                            </h5>
+                        </div>
+                        <div class="col-1 d-flex justify-content-end align-items-center">
+                            <button type="button" class="btn-close m-0 p-0" data-bs-dismiss="modal" aria-label="Close" style="width: 10px; height: 10px; float: end;"></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-flex pt-2" style="background-color:inherit;">
+                            <button class="tab-links display-8 px-2 px-md-4" onclick="openCategory(event, 'add-by-URL')" id="defaultOpen">
+                                <small>
+                                    {% trans 'URL' %}
+                                </small>
+                            </button>
+                            <button class="tab-links display-8 px-2 px-md-4" onclick="openCategory(event, 'add-your-videos')">
+                                <small>
+                                    {% trans 'Your videos' %}
+                                </small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body scrollbar-black">
+                <div class="container-fluid mt-4 position-relative">
+                    <div id="add-by-URL" class="tab-content">
+                        {% include "video/playlist/add_by_URL.html" %}
+                    </div>
+                    <div id="add-your-videos" class="tab-content">
+                        {% include "video/playlist/add_your_videos.html" %}
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-start">
+                <button id="add-modal-videos" type="button" class="btn we-btn-primary">
+                    <small>
+                        {% trans "Add" %}
+                    </small>
+                </button>
+                <button type="button" class="btn we-btn-secondary" data-bs-dismiss="modal">
+                    <small>
+                        {% trans "Close" %}
+                    </small>
+                </button>
+            </div>
+
+
+            <div id="addVideoFailedToast" class="toast align-items-center position-absolute bg-danger"
+                 style="bottom: 8px; left: 8px; color: white; font-weight: bold; width: auto;"
+                 role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex justify-content-between">
+                    <div class="toast-body">
+                        {% trans 'Adding video failed' %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        document.getElementById("defaultOpen").click();
+    });
+
+    let myModalEl = document.getElementById('add-video-to-playlist')
+    myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        document.getElementById("defaultOpen").click();
+        undoURLAdd();
+        undoYourVideosAdd();
+    })
+
+    function undoURLAdd() {
+        const URLInput = document.getElementById("url-input");
+        URLInput.classList.remove("is-invalid");
+        URLInput.classList.remove("is-valid");
+        URLInput.value = "";
+        document.getElementById("video-check-thumbnail").style.display = "none";
+        document.getElementById("video-check-title").innerHTML = "";
+    }
+
+    function undoYourVideosAdd() {
+        $('#add-videos-list li').each(function () {
+            if(document.getElementById(this.id).style.border.includes("solid")){
+                $(this).css({"border": "none"});
+                let position = adding_your_videos.indexOf(this.id);
+                adding_your_videos.splice(position, 1);
+            }
+        });
+    }
+
+    let on_mode = ""
+    function openCategory(evt, category) {
+        on_mode = category
+        let i, tabContent, tabLinks;
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+        }
+        tabLinks = document.getElementsByClassName("tab-links");
+        for (i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+        }
+        document.getElementById(category).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    $('#add-modal-videos').click(function () {
+        if(on_mode == 'add-your-videos'){
+            let data = [];
+
+            adding_your_videos.forEach(function(video_code, index, array) {
+                data.push({
+                    "video":video_code,
+                    "action":"add"
+                });
+            })
+            editPlaylist(data);
+        }
+        else if(on_mode == 'add-by-URL'){
+            if(document.getElementById("url-input").classList.contains('is-valid')){
+                let data = [{'action': 'add', 'video': adding_URL_video}]
+                editPlaylist(data);
+            }
+            else {
+                const URLInput = document.getElementById("url-input");
+                URLInput.parentElement.querySelector("#invalid-url-error").innerHTML = "{% trans "Input should be valid" %}";
+                URLInput.classList.add("is-invalid");
+                URLInput.classList.remove("is-valid");
+            }
+        }
+    })
+</script>

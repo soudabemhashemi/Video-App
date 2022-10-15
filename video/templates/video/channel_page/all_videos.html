@@ -1,0 +1,35 @@
+{% load static %}
+{% load i18n %}
+
+<div class="justify-content-right mt-5" style="flex-direction: row; display: table;">
+    {% for video in channel.videos.all %}
+    <div class="bg-light border-0 px-0 mb-4" style="height: 214px; width: 210px; margin-right: 4px; display: inline-table;">
+        <div class="bg-darkgray" style="height: 118px; width: 210px;">
+            <a href="{% url 'video:video-detail' code=video.code %}" class="h-100 w-100 d-flex justify-content-center align-items-center position-relative ">
+                    <img
+                         alt="Thumbnail"
+                         {% if video.thumbnail %}
+                         src="{{ video.thumbnail.url }}"
+                         {% else %}
+                         src="{% static 'video/images/logo.png' %}"
+                         {% endif %}
+                        width="210"
+                         height="118"
+                    >
+                    <div class="badge bg-secondary shadow position-absolute" style="bottom: 6px; right: 6px; border-radius:8px;">{{ video.duration_str }}</div>
+            </a>
+        </div>
+
+        <div class="">
+                <a href="{% url 'video:video-detail' code=video.code %}">
+                    <h6 class="text-black video-card-title auto-direction my-2" style="word-break: break-word; padding-left: 25px;"><small>{{ video.title }}</small> </h6>
+                </a>
+                <div class="row text-muted fs-8">
+                    <p class='col-auto float-right pl-5'> {{video.total_views}} {% trans 'Seen' %} </p>
+                    <p class="col ms-0 p-0 text-end" style="display: list-item">{{video.string_date}}</p>
+                </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>

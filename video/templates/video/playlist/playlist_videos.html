@@ -1,0 +1,148 @@
+{% load i18n %}
+{% load static %}
+<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'video/styles/video_list_home.css' %}">
+<ul id="videosList" class="p-0 py-2" style="list-style: none;">
+    {% for video_relation in video_relations %}
+        <li id="li_{{ video_relation.video.code }}" style="cursor: grab;"
+            class="container-fluid p-2 border-bottom">
+            <div class="row px-1 w-100 position-relative m-0">
+                <div id="video-counter" class="col-md-auto p-0 d-flex align-items-center" style="width: fit-content;">
+                    {{ forloop.counter }}
+                </div>
+                <div class="col-md-auto ">
+                    <div class="bg-darkgray position-relative p-0"
+                         style="height: 100%; max-height: 90px;
+                         max-width: 160px; width: 100%;
+                         overflow: hidden;">
+                        <a href="{% url 'video:video-detail' code=video_relation.video.code %}?playlist={{ playlist.code }}">
+                            <img class="card-img-top video-card-img"
+                                 alt="Thumbnail"
+                                    {% if video_relation.video.thumbnail %}
+                                 src="{{ video_relation.video.thumbnail.url }}"
+                                    {% else %}
+                                 src="{% static 'video/images/logo.png' %}"
+                                    {% endif %}>
+                            {% if video_relation.video.duration %}
+                                <div class="badge bg-secondary shadow position-absolute"
+                                     style="bottom: 6px; right: 6px; border-radius:8px;">
+                                    <small>
+                                        {{ video_relation.video.duration_str }}
+                                    </small>
+
+                                </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                <div class="col" style="overflow: hidden">
+                    <h6>
+                        <a class="text-end text-black one-line" href="{% url 'video:video-detail' code=video_relation.video.code %}?playlist={{ playlist.code }}">
+                            {{ video_relation.video.title }}
+                        </a>
+                    </h6>
+                    <a class="text-end text-muted one-line" href="{% url 'video:channel-detail' video_relation.video.channel.name %}">
+                        {{ video_relation.video.channel.title }}
+                    </a>
+                </div>
+                <div class="col-md-auto d-flex align-items-center" style="width: fit-content;">
+                    <button id="btn_{{ video_relation.video.code }}" class="video-delete p-2">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<div id="removeVideoFailedToast" class="toast align-items-center position-absolute bg-danger"
+     style="bottom: 24px; left: 24px; color: white; font-weight: bold; width: auto;"
+     role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex justify-content-between">
+        <div class="toast-body">
+            {% trans 'Removing video failed' %}
+        </div>
+        <button type="button" class="btn-close m-3" data-bs-dismiss="toast"
+                aria-label="Close" style="width: fit-content;"></button>
+    </div>
+</div>
+
+<script>
+    {% if playlist.channel.user == user %}
+        $('#videosList li').hover(function () {
+            $(this).css({"background-color": "#f1f1f1"});
+        });
+        $('#videosList li').mouseleave(function () {
+            $(this).css({"background-color": "inherit"});
+        });
+
+        $('[id=video-counter]').html('<i class="bi bi-list"></i>');
+        new Sortable(videosList, {
+            animation: 150,
+            ghostClass: 'blue-background-class',
+            onEnd: function (event) {
+                if(event.oldIndex !== event.newIndex){
+                    let video_id = event.clone.id.split('_')[1];
+                    let data = [{'action': 'move', 'video': video_id, 'order': event.newIndex}]
+                    editPlaylist(data);
+                }
+            }
+        });
+
+        $('#videosList button').click(function () {
+            let video_id = this.id.split('_')[1]
+            let data = [{'action': 'remove', 'video': video_id}]
+            editPlaylist(data);
+        })
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        async function editPlaylist(formData) {
+            await axios.post("{% url "video-api:playlist-edit" code=playlist.code %}", formData, {
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken"),
+                    'Content-Type': 'application/json'
+                },
+            }).then((response) => {
+                formData.forEach(function(data, index, array) {
+                    if(data.action === 'add'){
+                        window.location.reload();
+                    } else if(data.action === 'remove'){
+                        let li_id = data.video;
+                        li_id = 'li_' + li_id;
+                        document.getElementById(li_id).remove();
+                    } else if(data.action === 'move'){
+                        $('#playlist-first-video-thumbnail').load(document.URL +  ' #playlist-first-video-thumbnail');
+                    }
+                });
+            }, (error) => {
+                console.log(error);
+                formData.every(function(data, index, array) {
+                    if(data.action === 'add'){
+                        $('#addVideoFailedToast').toast("show");
+                    } else if(data.action === 'remove'){
+                        $('#removeVideoFailedToast').toast("show");
+                    } else if(data.action === 'move'){
+                        window.location.reload();
+                        //TODO: re-order to main state
+                    }
+                });
+            });
+        }
+    {% else %}
+        $('[class=video-delete]').remove();
+    {% endif %}
+</script>

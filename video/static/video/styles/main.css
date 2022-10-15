@@ -1,0 +1,69 @@
+body {
+    font-family: IRANSans, Helvetica, sans-serif;
+    background-color: #f8f9fa;
+}
+
+pre{
+    font-family: IRANSans, Helvetica, sans-serif;
+}
+
+button {
+    font-family: IRANSans, Helvetica, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.bi {
+    display: flex;
+}
+
+#content {
+    margin-right: 0;
+    transition: margin-right 150ms ease;
+}
+
+.enable-color{
+    background-color: orange !important;
+}
+
+.disable-color{
+    background-color: #dcb472;
+}
+
+.disable-color:hover{
+    background-color: #e3c690;
+}
+
+.enable-color:hover{
+    background-color: #e3c690 !important;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.ltr {
+    direction: ltr;
+    text-align: right;
+}
+
+
+@media (max-width: 1300px){
+    .sidebar-margin{
+        margin-right: 0 !important;
+    }
+}

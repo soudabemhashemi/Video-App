@@ -1,0 +1,59 @@
+{% extends "video/base.html" %}
+{% load i18n %}
+{% block css %}
+    <style>
+        form div{
+            height: 51px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2 class="pt-5 text-center"> {% translate 'Contact us' %} </h2>
+    <p class="pt-2 text-center"> {% trans 'You can use the following communication channels to contact us.' %}</p>
+
+    <div class="row pt-3 px-5">
+
+        <div class="col-6" style="padding-top: 1.9rem;">
+            <div class="row">
+                <p class="col-1">{% trans 'Address:' %}</p>
+                <p class="col"> شهرک غرب، خیابان ایران‌زمین، خیابان گلستان جنوبی، پلاک ۳۵، ساختمان میثاق </p>
+            </div>
+            <div class="row">
+                <p class="col-1">{% trans 'Phone number:' %}</p>
+                <p class="col"> ۰۹۱۲۳۴۵۶۷۸۹</p>
+            </div>
+            <div class="row">
+                <p class="col-1">{% trans 'Email' %}</p>
+                <p class="col"> www.a@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="col-6 px-4">
+            <form class="auth-form rounded" method="post">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                    <div class="">
+                        <label for="{{ field.id_for_label }}" class="m-1"></label>
+                        <div class="m-2 text-end remove_marker">{{ field }}</div>
+                    </div>
+                {% endfor %}
+
+            <div class="row" style="margin-top: 131px">
+                {% if messages %}
+                    <ul class="col-auto messages" style="padding-right: 55px">
+                        {% for message in messages %}
+                        <li class="text-success">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class="col pb-4" style="padding-left: 20px;">
+                    <button type="submit" class="we-btn float-start" style="width: 116px; background-color: #CC0000; color: white;">{% trans 'Submit' %}</button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

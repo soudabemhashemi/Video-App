@@ -1,0 +1,18 @@
+{% load static %}
+{% load i18n %}
+<div class="my-5" style="display: table;">
+{% for channel in channel.subscribers.all %}
+    <div style="flex-direction: column; display: inline-block; padding-left: 16px;">
+        <a class="text-black text-center default-avatar" href="{% url 'video:channel-detail' channel.name %}" style="width:106px;">
+            {% if channel.avatar %}
+                <img class="rounded-circle" src="{{ channel.avatar.url }}" alt="avatar" height="90" width="90">
+            {% else %}
+                <div id="profileImage" class="rounded-circle fs-2" style="height:90px; width:90px; padding-top: 1.6rem;"></div>
+            {% endif %}
+            <p class="mt-2" id="name"> {{ channel.title }}</p>
+        </a>
+        <button id="subscribe-{{ channel.id }}" type="submit" class="we-btn we-btn-subscribe fs-7 mb-5 px-0 {% if user.channel == channel %} disabled {% endif %} {% if user.channel in channel.subscribers.all %} d-none {% else %} d-initial {% endif %}" style="width: 90px;" onclick="subscribe(this, 'unsubscribe-{{ channel.id }}')" path="{% url 'video-api:subscribe_api' pk=channel.id %}">{% trans 'Follow' %}</button>
+        <button id="unsubscribe-{{ channel.id }}" type="submit" class="we-btn we-btn-unsubscribe text-center fs-7 mb-5 px-0 {{ channel.id }} {% if user.channel in channel.subscribers.all %} d-initial {% else %} d-none {% endif %}" onclick="unsubscribe(this, 'subscribe-{{ channel.id }}')"  style="width: 90px;" path="{% url 'video-api:unsubscribe_api' pk=channel.id %}"> {% trans 'Unfollow' %} </button>
+    </div>
+{% endfor %}
+</div>
